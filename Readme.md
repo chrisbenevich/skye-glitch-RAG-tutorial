@@ -16,8 +16,8 @@ module load tacc-apptainer
 ```
 
 ### 2.2 Pull container into your $SCRATCH directory
-you only need to run this ONCE,
-comment out these lines after the first run 
+You only need to run this ONCE,
+comment out these lines after the first run. 
 
 ```bash
 current_dir=$(pwd)
@@ -27,8 +27,8 @@ cd "$current_dir"
 ```
 
 ### 2.3 Download model
-you only need to run this ONCE,
-comment out these lines after the first run 
+You only need to run this ONCE,
+comment out these lines after the first run.
 
 ```bash
 apptainer exec $SCRATCH/taccgptback_latest.sif \
