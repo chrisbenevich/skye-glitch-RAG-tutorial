@@ -33,7 +33,7 @@ comment out these lines after the first run.
 current_dir=$(pwd)
 cd $SCRATCH
 apptainer pull docker://skyeglitch/taccgptback_latest
-cd "$current_dir/RAG_tutorial/"
+cd "$current_dir"
 ```
 
 ### 2.3 Download model

@@ -13,8 +13,10 @@ module load tacc-apptainer
 
 # pull container
 # you only need to run this ONCE
+current_dir=$(pwd)
 cd $SCRATCH
 apptainer pull docker://skyeglitch/taccgptback_latest
+cd "$current_dir"
 
 # download model
 # you only need to run this ONCE
