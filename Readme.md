@@ -1,6 +1,6 @@
 # Instruction: How to Run RAG Turorial Code
 
-## 0. How to run the code in the repository
+## 0. How to run the code in this repository on TACC
 
 After you retrieve the code and data from github, change directory into your RAG_tutorial direcotory where the content resides, and
 either submit a job with [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) (after you adapt the slurm script according to your account information on TACC)
