@@ -2,14 +2,14 @@
 
 ## 0. How to run the code in the repository
 
-After you retrieve the code and data from github, change directory into your RAG_tutorial direcotory where all content resides, and
-either submit a job with SBATCH [sbatch_instruction](https://tacc.github.io/TeachingWithTACC/02.running_jobs/)(after you adapt the slurm script according to your account information on TACC)
+After you retrieve the code and data from github, change directory into your RAG_tutorial direcotory where the content resides, and
+either submit a job with [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) (after you adapt the slurm script according to your account information on TACC)
 
 ```bash
 sbatch inference_tutorial.slurm
 ```
 
-or get a compute node with idev[idev_instruction](https://docs.tacc.utexas.edu/software/idev/) command and run the commands in the inference_tutorial.slurm script line by line.
+or get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) command and run the commands in the inference_tutorial.slurm script line by line.
 
 ## 1. Retrive the Code and Dataset from Github
 
