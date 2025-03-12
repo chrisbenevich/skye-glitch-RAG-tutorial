@@ -64,7 +64,7 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     # after you run the code for the first time, you can re-use the databse with the following command
     # db = Chroma(persist_directory="db_ce", embedding_function=embeddings)
     # you can test retrieved results with the following lines:
-    # esults = db.similarity_search("data structure", k=2)
+    # results = db.similarity_search("data structure", k=2)
     # print(results[0].page_content)
 
        
