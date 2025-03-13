@@ -1,42 +1,49 @@
-# Instruction: How to Run RAG Turorial Code
-
-## 0. How to run the code in this repository on TACC
-
-After you retrieve the code and data from github, change directory into your RAG_tutorial direcotory where the content resides, and
-either submit a job with [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) (after you adapt the slurm script according to your account information on TACC)
-
-```bash
-sbatch inference_tutorial.slurm
-```
-
-or get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) command and run the commands in the inference_tutorial.slurm script line by line.
+# Instruction: How to Run RAG Tutorial Code
 
 ## 1. Retrive the Code and Dataset from Github
 
 ```bash
 git clone https://github.com/skye-glitch/RAG_tutorial.git
 ```
+## 2. Change Directory
 
-## 2. Slurm Script Step-by-Step
+change directory into your RAG_tutorial direcotory where the content resides
 
-### 2.1 Load the apptainer module
+# insert example command 
+
+## 3. Submit Job
+
+Either: 
+
+submit a job with [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) (after you adapt the slurm script according to your account information on TACC)
+
+```bash
+sbatch inference_tutorial.slurm
+```
+
+or:
+
+get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) command and run the commands in the inference_tutorial.slurm script line by line.
+
+## 4. Load the apptainer module with Slurm script
 
 ```bash
 module load tacc-apptainer
 ```
 
-### 2.2 Pull container into your $SCRATCH directory
+### 5. Pull container into your $SCRATCH directory with Slurm script
 You only need to run this ONCE,
 comment out these lines after the first run. 
 
 ```bash
 current_dir=$(pwd)
 cd $SCRATCH
+# CB edit below as :latest
 apptainer pull docker://skyeglitch/taccgptback_latest
 cd "$current_dir"
 ```
 
-### 2.3 Download model
+### 6. Download model with Slurm script
 You only need to run this ONCE,
 comment out these lines after the first run.
 
@@ -44,7 +51,7 @@ comment out these lines after the first run.
 apptainer exec $SCRATCH/taccgptback_latest.sif \
     huggingface-cli download facebook/opt-1.3b --local-dir $SCRATCH/facebook/opt-1.3b/
 ```
-### 2.4 Launch command in container
+### 7. Launch command in container with Slurm script
 
 ```bash
 apptainer exec --nv $SCRATCH/taccgptback_latest.sif \
@@ -53,7 +60,7 @@ python3 rag_ce_example.py \
 --MODEL_NAME="$SCRATCH/facebook/opt-1.3b/" 
 ```
 
-## 3. Python Script Highlights
+## 8. Python Script Highlights
 
 https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L62
 ```python
