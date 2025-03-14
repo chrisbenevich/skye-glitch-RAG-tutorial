@@ -1,4 +1,4 @@
-# Instruction: How to Run RAG Tutorial Code
+# How to Run RAG Tutorial Code
 
 ## 1. Retrive the Code and Dataset from Github
 
@@ -7,23 +7,38 @@ git clone https://github.com/skye-glitch/RAG_tutorial.git
 ```
 ## 2. Change Directory
 
-change directory into your RAG_tutorial direcotory where the content resides
+change directory to where the content resides. To move from the root directory to a folder called RAG_tutorial:
 
-# insert example command 
+```bash
+cd RAG_tutorial
+```
 
 ## 3. Submit Job
 
 Either: 
 
-submit a job with [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) (after you adapt the slurm script according to your account information on TACC)
+edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) and submit the job by executing the below one line at a time at the command line.
 
 ```bash
-sbatch inference_tutorial.slurm
+#!/bin/bash
+#SBATCH -A your_allocation
+#SBATCH --time=00:05:00
+#SBATCH -o RAG-%J.o
+#SBATCH -e RAG-%J.e
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -p rtx
+#SBATCH --mail-user=your_email
+#SBATCH --mail-type=all
 ```
 
 or:
 
-get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) command and run the commands in the inference_tutorial.slurm script line by line.
+get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) 
+
+```bash
+idev -p rtx
+```
 
 ## 4. Load the apptainer module with Slurm script
 
@@ -31,27 +46,29 @@ get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) comm
 module load tacc-apptainer
 ```
 
-### 5. Pull container into your $SCRATCH directory with Slurm script
-You only need to run this ONCE,
-comment out these lines after the first run. 
+## 5. Pull container into your $SCRATCH directory with Slurm script
+Run the following once:
 
 ```bash
 current_dir=$(pwd)
 cd $SCRATCH
 # CB edit below as :latest
-apptainer pull docker://skyeglitch/taccgptback_latest
+apptainer pull docker://skyeglitch/taccgptback:latest
 cd "$current_dir"
 ```
+Then comment out the above lines in "rag_ce_example.py."
 
-### 6. Download model with Slurm script
-You only need to run this ONCE,
-comment out these lines after the first run.
+## 6. Download model with Slurm script
+Run the following once:
 
 ```bash
 apptainer exec $SCRATCH/taccgptback_latest.sif \
     huggingface-cli download facebook/opt-1.3b --local-dir $SCRATCH/facebook/opt-1.3b/
 ```
-### 7. Launch command in container with Slurm script
+
+Then comment out the above lines in "rag_ce_example.py."
+
+## 7. Launch command in container with Slurm script
 
 ```bash
 apptainer exec --nv $SCRATCH/taccgptback_latest.sif \
@@ -60,18 +77,21 @@ python3 rag_ce_example.py \
 --MODEL_NAME="$SCRATCH/facebook/opt-1.3b/" 
 ```
 
-## 8. Python Script Highlights
+## 8. Instantiate database
 
-https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L62
+Run the Python command from https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L62 as below once.
+
 ```python
 db = Chroma.from_documents(texts, embeddings, persist_directory="db_ce")
 ```
-This operation to insert the document into your database only need to be run once.
-After first run, you can use 
-https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L64
+
+Then, comment out the above line in "rag_ce_example.py."  
+
+## 9. Enable database queries
+
+To query the database, uncomment the Python command from https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L64
 
 ```python
 db = Chroma(persist_directory="db_ce", embedding_function=embeddings)
 ```
-to inquire the databse.
 
