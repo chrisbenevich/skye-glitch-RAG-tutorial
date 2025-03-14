@@ -79,19 +79,16 @@ python3 rag_ce_example.py \
 
 ## 8. Instantiate database
 
-Run the Python command from https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L62 as below once.
+After running "rag_ce_example.py." once, comment out the database line of code located at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63 and excerpted as follows. 
 
 ```python
 db = Chroma.from_documents(texts, embeddings, persist_directory="db_ce")
 ```
 
-Then, comment out the above line in "rag_ce_example.py."  
-
 ## 9. Enable database queries
 
-To query the database, uncomment the Python command from https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L64
+To query the database consequently, uncomment the line of code located at [https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L64](https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/4000e4b13231198f1ffc272570cf21c736611a20/rag_ce_example.py#L65) and excerpted as follows.
 
 ```python
 db = Chroma(persist_directory="db_ce", embedding_function=embeddings)
 ```
-
