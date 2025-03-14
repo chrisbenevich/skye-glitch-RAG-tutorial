@@ -61,7 +61,7 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
 
     # only need to insert document once
     db = Chroma.from_documents(texts, embeddings, persist_directory="db_ce")
-    # after you run the code for the first time, you can re-use the databse with the following command
+    # after you run the code for the first time, you can re-use the database with the following command
     # db = Chroma(persist_directory="db_ce", embedding_function=embeddings)
     # you can test retrieved results with the following lines:
     # results = db.similarity_search("data structure", k=2)
