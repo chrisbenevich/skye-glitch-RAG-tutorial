@@ -61,7 +61,6 @@ Then comment out the above lines in "rag_ce_example.py."
 Run the following once:
 
 ```bash
-# CB edit below as :latest as well ?
 apptainer exec $SCRATCH/taccgptback_latest.sif \
     huggingface-cli download facebook/opt-1.3b --local-dir $SCRATCH/facebook/opt-1.3b/
 ```
