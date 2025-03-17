@@ -87,4 +87,4 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 
 To query the database consequently, uncomment the line of code located at
 
-[https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L64](https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/4000e4b13231198f1ffc272570cf21c736611a20/rag_ce_example.py#L65) 
+https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L64](https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/4000e4b13231198f1ffc272570cf21c736611a20/rag_ce_example.py#L65
