@@ -80,6 +80,8 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     generation_config.top_p = 0.95
     # To test hyperparamter, changed k from 40 to 5, anticipating increase in accuracy
     # but perhaps fewer sentences
+    # Result: total output was shorter; unclear effect on accuracy but appeared to 
+    # include human-to-human conversation not present in previous runs
     generation_config.top_k = 40
     generation_config.do_sample = True if temperature > 0.0 else False
     generation_config.max_new_tokens = 512
