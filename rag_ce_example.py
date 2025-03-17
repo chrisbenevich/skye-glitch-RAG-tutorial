@@ -75,6 +75,7 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     MODEL_NAME = in_MODEL_NAME
     generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
     generation_config.temperature = temperature
+    # 3/17/25 1:10PM change p from 0.95 to 0.75
     generation_config.top_p = 0.95
     generation_config.top_k = 40
     generation_config.do_sample = True if temperature > 0.0 else False
