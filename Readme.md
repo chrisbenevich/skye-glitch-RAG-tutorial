@@ -35,7 +35,7 @@ idev -p rtx
 
 ## 3. Change directory
 
-change directory to where the content resides. To move from the root directory to a folder called RAG_tutorial:
+Change directory to where the content resides. To move from the home directory to a folder called RAG_tutorial:
 
 ```bash
 cd RAG_tutorial
@@ -56,7 +56,7 @@ cd $SCRATCH
 apptainer pull docker://skyeglitch/taccgptback:latest
 cd "$current_dir"
 ```
-Then comment out the above lines in "rag_ce_example.py."
+Then comment out the above lines in "inference_tutorial.slurm."
 
 ## 6. Download model with Slurm script
 Run the following once:
@@ -66,7 +66,7 @@ apptainer exec $SCRATCH/taccgptback_latest.sif \
     huggingface-cli download facebook/opt-1.3b --local-dir $SCRATCH/facebook/opt-1.3b/
 ```
 
-Then comment out the above lines in "rag_ce_example.py."
+Then comment out the above lines in "inference_tutorial.slurm."
 
 ## 7. Launch command in container with Slurm script
 
