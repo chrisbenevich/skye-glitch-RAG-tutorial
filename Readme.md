@@ -52,7 +52,6 @@ Run the following once:
 ```bash
 current_dir=$(pwd)
 cd $SCRATCH
-# CB edit below as :latest
 apptainer pull docker://skyeglitch/taccgptback:latest
 cd "$current_dir"
 ```
