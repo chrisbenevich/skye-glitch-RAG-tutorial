@@ -1,19 +1,12 @@
 # How to Run RAG Tutorial Code
 
-## 1. Retrive the Code and Dataset from Github
+## 1. Retrive the original code and dataset 
 
 ```bash
 git clone https://github.com/skye-glitch/RAG_tutorial.git
 ```
-## 2. Change Directory
 
-change directory to where the content resides. To move from the root directory to a folder called RAG_tutorial:
-
-```bash
-cd RAG_tutorial
-```
-
-## 3. Submit Job
+## 2. Submit job to compute node on HPC
 
 Either: 
 
@@ -40,13 +33,21 @@ get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/)
 idev -p rtx
 ```
 
+## 3. Change directory
+
+change directory to where the content resides. To move from the root directory to a folder called RAG_tutorial:
+
+```bash
+cd RAG_tutorial
+```
+
 ## 4. Load the apptainer module with Slurm script
 
 ```bash
 module load tacc-apptainer
 ```
 
-## 5. Pull container into your $SCRATCH directory with Slurm script
+## 5. Pull container into your HPC $SCRATCH directory with Slurm script
 Run the following once:
 
 ```bash
@@ -78,16 +79,12 @@ python3 rag_ce_example.py \
 
 ## 8. Instantiate database
 
-After running "rag_ce_example.py." once, comment out the database line of code located at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63 and excerpted as follows. 
+After running "rag_ce_example.py." once, comment out the database line of code located at 
 
-```python
-db = Chroma.from_documents(texts, embeddings, persist_directory="db_ce")
-```
+https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
 ## 9. Enable database queries
 
-To query the database consequently, uncomment the line of code located at [https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L64](https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/4000e4b13231198f1ffc272570cf21c736611a20/rag_ce_example.py#L65) and excerpted as follows.
+To query the database consequently, uncomment the line of code located at
 
-```python
-db = Chroma(persist_directory="db_ce", embedding_function=embeddings)
-```
+[https://github.com/skye-glitch/RAG_tutorial/blob/main/rag_ce_example.py#L64](https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/4000e4b13231198f1ffc272570cf21c736611a20/rag_ce_example.py#L65) 
