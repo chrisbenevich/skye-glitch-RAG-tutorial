@@ -85,7 +85,8 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     generation_config.top_k = 40
     generation_config.do_sample = True if temperature > 0.0 else False
     # To test hyperparameter, changed tokens from 512 to 100, anticipating 
-    # nonsensical output
+    # nonsensical output. Resulted in: incorrect use of $ symbol in mathematical equation
+    # and repeating an input question except with slightly different word order
     generation_config.max_new_tokens = 512
 
     
