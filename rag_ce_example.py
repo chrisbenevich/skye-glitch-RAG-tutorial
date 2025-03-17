@@ -75,8 +75,11 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     MODEL_NAME = in_MODEL_NAME
     generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
     generation_config.temperature = temperature
-    # To test hyperparamter, changed p from 0.95 to 0.75 and part of output was nonsensical
+    # To test hyperparamter, changed p from 0.95 to 0.75, anticipating loss in accuracy
+    # Result: last section of output was nonsensical
     generation_config.top_p = 0.95
+    # To test hyperparamter, changed k from 40 to 5, anticipating increase in accuracy
+    # but perhaps fewer sentences
     generation_config.top_k = 40
     generation_config.do_sample = True if temperature > 0.0 else False
     generation_config.max_new_tokens = 512
