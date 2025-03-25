@@ -97,7 +97,7 @@ In order to maintain equal weighting of query responses, do not load the databas
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
-## 9. Enable database queries
+## 10. Enable database queries
 
 To query the database consequently, uncomment the following line of code in the .py.
 
