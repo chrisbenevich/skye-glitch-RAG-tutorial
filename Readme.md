@@ -10,7 +10,7 @@ git clone https://github.com/skye-glitch/RAG_tutorial.git
 
 Either: 
 
-edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) and submit the job by executing the below one line at a time at the command line.
+edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) and submit the job by executing the below all at once at the command line.
 
 ```bash
 #!/bin/bash
@@ -27,15 +27,24 @@ edit the below Slurm script using your TACC account information [SBATCH](https:/
 
 or:
 
-get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) 
+get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) and submit the job by executing the below one line at a time at the command line.
 
 ```bash
 idev -p rtx
+idev -A your_allocation
+idev --time=00:05:00
+idev -o RAG-%J.o
+idev -e RAG-%J.e
+idev -N 1
+idev -n 1
+idev -p rtx
+idev --mail-user=your_email
+idev --mail-type=all
 ```
 
 ## 3. Change directory
 
-Change directory to where the content resides. To move from the home directory to a folder called RAG_tutorial:
+Change directory to where the content resides in your directory on the HPCs. If you cloned the GitHub repo to your home directory to a folder called RAG_tutorial as I did, you will enter the HPC system at your home directory. To then move from your home directory to a folder called RAG_tutorial, enter the following at the command line.
 
 ```bash
 cd RAG_tutorial
@@ -48,7 +57,7 @@ module load tacc-apptainer
 ```
 
 ## 5. Pull container into your HPC $SCRATCH directory with Slurm script
-Run the following once:
+Run the following once.
 
 ```bash
 current_dir=$(pwd)
@@ -56,17 +65,14 @@ cd $SCRATCH
 apptainer pull docker://skyeglitch/taccgptback:latest
 cd "$current_dir"
 ```
-Then comment out the above lines in "inference_tutorial.slurm."
 
 ## 6. Download model with Slurm script
-Run the following once:
+Run the following once.
 
 ```bash
 apptainer exec $SCRATCH/taccgptback_latest.sif \
     huggingface-cli download facebook/opt-1.3b --local-dir $SCRATCH/facebook/opt-1.3b/
 ```
-
-Then comment out the above lines in "inference_tutorial.slurm."
 
 ## 7. Launch command in container with Slurm script
 
@@ -77,14 +83,22 @@ python3 rag_ce_example.py \
 --MODEL_NAME="$SCRATCH/facebook/opt-1.3b/" 
 ```
 
-## 8. Instantiate database
+You have now run the tutorial code.
 
-After running "rag_ce_example.py." once, comment out the database line of code located at 
+## 8. Instantiated database
+
+While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The database is located at the following line of code in the .py.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
+## 9. Prevent multiple database instantiations
+
+In order to maintain equal weighting of query responses, do not load the database more than once. Therefore, comment out the following line of code in the .py.
+
+https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
+
 ## 9. Enable database queries
 
-To query the database consequently, uncomment the line of code located at
+To query the database consequently, uncomment the following line of code in the .py.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/317f544579e16de79e79ef36b3e97be03fd7bbde/rag_ce_example.py#L65
