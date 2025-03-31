@@ -88,15 +88,15 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 
 # Understanding RAG Tutorial Components and Dependencies
 
-Below please find explanations of the code. The explanations were initially provided by a chatbot, then both lightly edited for brevity and finally interspersed among the code by a human.
+Below please find explanations of the code. The explanations were initially provided by a chatbot, then both lightly edited for brevity and finally interspersed among the code by a human. One way to better understand how a RAG works is, section by section, to read the description of the function of the code and then to read the code itself.
 
 First, import torch, a library for machine learning tasks. Then, import pretrained models from the HuggingFace transformers library: 
 
 * The pipeline function provides a simple API to perform NLP tasks using pretrained models. It abstracts away the complexity of loading models and tokenizers, making it easy to use them for inference.
 * AutoConfig is a class that helps automatically load the configuration for a pretrained model, including details about the model architecture, hyperparameters, and other settings necessary for initializing the model.
 * AutoTokenizer is a class in the transformers library that helps automatically load the appropriate tokenizer for a pretrained model, making it easier to switch between different models and their respective tokenizers.
-*  
-
+* AutoModelForCausalLM is a class that loads a pretrained model with a causal language modeling head. Causal language models are designed to predict the next token in a sequence. A token is an NLP unit that represents a piece of text.
+* GenerationConfig is a class that configures text generation parameters, such as setting the maximum length of the generated text or choosing the decoding strategy. A decoding strategy determines how the model selects the next word in a sequence based on the probabilities assigned to each possible word. 
 
 ```bash
 import torch
@@ -104,8 +104,11 @@ import torch
 
 from transformers import pipeline
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, GenerationConfig
+```
 
+placeholder for next explanatory text
 
+```bash
 # for RAG
 from langchain_huggingface import HuggingFacePipeline
 from langchain_community.document_loaders import UnstructuredMarkdownLoader
