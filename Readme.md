@@ -1,4 +1,4 @@
-# How to Run RAG Tutorial Code
+# How to Run RAG Tutorial Code on an HPC
 
 ## 1. Retrive the original code and dataset 
 
@@ -8,9 +8,9 @@ git clone https://github.com/skye-glitch/RAG_tutorial.git
 
 ## 2. Submit job to compute node on HPC
 
-Either: 
+While you are able to get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/), you will have to monitor when you connect to the node. For greater productivity, it is recommended to submit your job using Slurm script. 
 
-edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) and submit the job by executing the below all at once at the command line.
+Edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) and submit the job by executing the below all at once at the command line.
 
 ```bash
 #!/bin/bash
@@ -23,23 +23,6 @@ edit the below Slurm script using your TACC account information [SBATCH](https:/
 #SBATCH -p rtx
 #SBATCH --mail-user=your_email
 #SBATCH --mail-type=all
-```
-
-or:
-
-get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/) and submit the job by executing the below one line at a time at the command line.
-
-```bash
-idev -p rtx
-idev -A your_allocation
-idev --time=00:05:00
-idev -o RAG-%J.o
-idev -e RAG-%J.e
-idev -N 1
-idev -n 1
-idev -p rtx
-idev --mail-user=your_email
-idev --mail-type=all
 ```
 
 ## 3. Change directory
@@ -87,13 +70,13 @@ You have now run the tutorial code.
 
 ## 8. Instantiated database
 
-While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The database is located at the following line of code in the .py.
+While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The code to instantiate the database is located at the following line of code in the .py.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
 ## 9. Prevent multiple database instantiations
 
-In order to maintain equal weighting of query responses, do not load the database more than once. Therefore, comment out the following line of code in the .py.
+To avoid loading the database more than once, comment out the following line of code in the .py.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
