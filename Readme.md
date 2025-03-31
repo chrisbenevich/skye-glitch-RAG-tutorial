@@ -88,7 +88,15 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 
 # Understanding RAG Tutorial Components and Dependencies
 
-This is a test to see how the below code will display.
+Below please find explanations of the code. The explanations were initially provided by a chatbot, then both lightly edited for brevity and finally interspersed among the code by a human.
+
+First, import torch, a library for machine learning tasks. Then, import pretrained models from the HuggingFace transformers library: 
+
+* The pipeline function provides a simple API to perform NLP tasks using pretrained models. It abstracts away the complexity of loading models and tokenizers, making it easy to use them for inference.
+* AutoConfig is a class that helps automatically load the configuration for a pretrained model, including details about the model architecture, hyperparameters, and other settings necessary for initializing the model.
+* AutoTokenizer is a class in the transformers library that helps automatically load the appropriate tokenizer for a pretrained model, making it easier to switch between different models and their respective tokenizers.
+*  
+
 
 ```bash
 import torch
