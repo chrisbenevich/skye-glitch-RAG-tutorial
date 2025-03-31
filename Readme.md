@@ -8,7 +8,7 @@ git clone https://github.com/skye-glitch/RAG_tutorial.git
 
 ## 2. Submit job to compute node on HPC
 
-While you are able to get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/), you will have to monitor when you connect to the node. For greater productivity, it is recommended to submit your job using Slurm script. 
+While you are able to get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/), before your job begins, you will have to monitor in the Terminal when you connect to the node. For greater productivity, it is recommended to submit your job using Slurm script. 
 
 Edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) and submit the job by executing the below all at once at the command line.
 
