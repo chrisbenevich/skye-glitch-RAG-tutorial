@@ -102,6 +102,7 @@ First, import torch, a library for machine learning tasks. Then, import pretrain
 * AutoModelForCausalLM is a class that loads a pretrained model with a causal language modeling head. Causal language models are designed to predict the next token in a sequence. A token is an NLP unit that represents a piece of text.
 * GenerationConfig is a class that configures text generation parameters, such as setting the maximum length of the generated text or choosing the decoding strategy. A decoding strategy determines how the model selects the next word in a sequence based on the probabilities assigned to each possible word. 
 
+
 ```bash
 import torch
 
@@ -110,7 +111,19 @@ from transformers import pipeline
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, GenerationConfig
 ```
 
-placeholder for next explanatory text
+Next, LangChain components provide open-source libraries and tools for building context-aware, reasoning applications:   
+
+* HuggingFacePipeline provides a high-level API to perform tasks such as text classification and question answering.
+* UnstructuredMarkdownLoader .
+* DirectoryLoader .
+* transformers .
+* RecursiveCharacterTextSplitter .
+* HuggingFaceEmbeddings .
+* Chroma .
+* StrOutputParser .
+* EmbeddingsRedundantFilter .
+* DocumentCompressorPipeline .
+
 
 ```bash
 # for RAG
@@ -124,6 +137,16 @@ from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.document_transformers import EmbeddingsRedundantFilter
 from langchain.retrievers.document_compressors import DocumentCompressorPipeline
+```
+
+placeholder for next explanatory text
+
+* infer_auto_device_map .
+* load_checkpoint_and_dispatch .
+* init_empty_weights .
+
+```bash
+
 from accelerate import infer_auto_device_map
 from accelerate import load_checkpoint_and_dispatch
 from accelerate import init_empty_weights
