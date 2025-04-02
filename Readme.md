@@ -80,19 +80,28 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 
 ## 10. Prevent multiple database instantiations
 
-To avoid loading the database more than once, comment out the following line of code in the .py.
+To avoid loading the database more than once, comment out the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
 ## 11. Enable database queries
 
-To query the database consequently, uncomment the following line of code in the .py.
+To query the database consequently, uncomment the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/317f544579e16de79e79ef36b3e97be03fd7bbde/rag_ce_example.py#L65
 
+## 12. Test retrieved results
+
+To test retrieved results, uncomment the following lines:
+
+https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/9c2344a7eae9917c2c66400574ae3a777630a56d/rag_ce_example.py#L67
+   
+https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/9c2344a7eae9917c2c66400574ae3a777630a56d/rag_ce_example.py#L68
+
+
 # Understanding RAG Tutorial Components and Dependencies
 
-Once you have seen how the job runs on an HPC, explore the components and dependencies of a RAG by reading the below documentation of "rag_ce_example.py" These explanations of the code were initially provided by prompt engineered chatbot responses, then both lightly edited for brevity and interspersed logically among the code by a human. One way to better understand how a RAG works is to read the description of the function of the code of the first component, read its corresponding code, do the same for the second component and analyze how the two components relate or depend on each other. Following is the documentation.
+Once you have seen how the job runs on an HPC, explore the components and dependencies of a RAG by reading the below documentation of "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py. These explanations of the code were initially provided by prompt engineered chatbot responses, then both lightly edited for brevity and interspersed logically among the code by a human. One way to better understand how a RAG works is to read the description of the function of the code of the first component, read its corresponding code, do the same for the second component and analyze how the two components relate or depend on each other. Following is the documentation of ten steps to set up a RAG.
 
 ## 1. Install packages
 
@@ -141,6 +150,8 @@ from langchain_community.document_transformers import EmbeddingsRedundantFilter
 from langchain.retrievers.document_compressors import DocumentCompressorPipeline
 ```
 
+## 2. Prepare and load the model
+
 Next, optimize and manage the deployment of the model across various devices.
 
 * infer_auto_device_map infers the optimal device map for distributing model layers across available devices (e.g., CPUs, GPUs), helping utilize hardware resources efficiently.
@@ -154,11 +165,7 @@ from accelerate import load_checkpoint_and_dispatch
 from accelerate import init_empty_weights
 ```
 
-## 2. Define and retrieve data
-
-Next, xxxx :   
-
-* xxx
+Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters.   
 
 ```bash
 def format_docs(docs):
@@ -182,9 +189,8 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
 
 ## 3. Load, split, chunk and embed documents
 
-Next, xxxx :   
+Next, set up a pipeline to load Markdown files, process them into text chunks and generate embeddings using a Hugging Face model:   
 
-* xxx
 
 ```bash
     # RAG
@@ -208,38 +214,40 @@ Next, xxxx :
 
 ## 4. Store documents
 
-Next, xxxx :   
-
-* xxx
+Instantiate the database:   
 
 ```bash
-    # only need to insert document once
     db = Chroma.from_documents(texts, embeddings, persist_directory="db_ce")
-    # after you run the code for the first time, you can re-use the database with the following command
+```
+
+Note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. To avoid loading the database more than once, comment out the above line of code. 
+
+To query the database consequently, uncomment the following.
+
+```bash
     # db = Chroma(persist_directory="db_ce", embedding_function=embeddings)
-    # you can test retrieved results with the following lines:
+```
+
+To test retrieved results, uncomment the following.
+
+```bash
     # results = db.similarity_search("data structure", k=2)
     # print(results[0].page_content)
 ```
 
-## 5. Augment documents with a prompt
+## 5. Initialize questions and set temperature
 
-Next, xxxx :   
-
-* xxx
+Next, include the queries for the model and the temperature for the results. A control of the randomness of the model's predictions, a temperature of 0.8 indicates a moderate level of randomness, allowing for more diverse outputs:   
 
 ```bash
        
-
     messages = ["How to solve system of linear equations using Gauss Elimination?", "How to check length of matrix with python?", "Where can I read more about Numpy?"]
     temperature = 0.8
 ```
 
 ## 6. Configure LLM generation settings
 
-Next, xxxx :   
-
-* xxx
+Next, configure the generation settings for the LLM with Hugging Face's Transformers library. This helps control the behavior of the model during text generation, balancing between randomness and coherence:   
 
 ```bash
     MODEL_NAME = in_MODEL_NAME
@@ -296,11 +304,10 @@ Next, set up a text generation pipeline using Hugging Face's Transformers librar
     llm = HuggingFacePipeline(pipeline=text_pipeline) 
 ```
 
-## 9. Use an LLM and a similarity search database to generate answers to questions 
+## 9. Augment the prompt and generate answers to questions 
 
-Next, xx:   
 
-* xxx
+Retrieves relevant documents, formats them, provides context to augment the prompt and generates a concise answer:   
 
 
 ```bash
