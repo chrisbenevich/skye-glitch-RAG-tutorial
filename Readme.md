@@ -92,7 +92,7 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 
 # Understanding RAG Tutorial Components and Dependencies
 
-Once you have seen how the job runs on an HPC, explore the components and dependencies of a RAG by reading the below documentation of "rag_ce_example.py" These explanations of the code were initially provided by a chatbot, then both lightly edited for brevity and interspersed logically among the code by a human. One way to better understand how a RAG works is to read the description of the function of the code of the first component, read its corresponding code, do the same for the second component and analyze how the two components relate or depend on each other. Following is the documentation.
+Once you have seen how the job runs on an HPC, explore the components and dependencies of a RAG by reading the below documentation of "rag_ce_example.py" These explanations of the code were initially provided by prompt engineered chatbot responses, then both lightly edited for brevity and interspersed logically among the code by a human. One way to better understand how a RAG works is to read the description of the function of the code of the first component, read its corresponding code, do the same for the second component and analyze how the two components relate or depend on each other. Following is the documentation.
 
 First, import torch, a library for machine learning tasks. Then, import pretrained models from the HuggingFace transformers library: 
 
@@ -111,13 +111,13 @@ from transformers import pipeline
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, GenerationConfig
 ```
 
-Next, LangChain components provide open-source libraries and tools for building context-aware, reasoning applications:   
+Next, the LangChain framework and Hugging Face's models integrate to provide open-source libraries and tools for building context-aware, reasoning applications:   
 
 * HuggingFacePipeline provides a high-level API to perform tasks such as text classification and question answering.
-* UnstructuredMarkdownLoader .
-* DirectoryLoader .
-* transformers .
-* RecursiveCharacterTextSplitter .
+* UnstructuredMarkdownLoader loads markdown files.
+* DirectoryLoader loads documents from a directory on your filesystem.
+* Hugging Face Transformers library in Python provides a wide range of pre-trained models for NLP tasks, such as text classification, named entity recognition and question answering.
+* RecursiveCharacterTextSplitter splits text into smaller chunks by recursively looking at characters.
 * HuggingFaceEmbeddings .
 * Chroma .
 * StrOutputParser .
