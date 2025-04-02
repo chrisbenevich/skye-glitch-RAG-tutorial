@@ -94,6 +94,8 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 
 Once you have seen how the job runs on an HPC, explore the components and dependencies of a RAG by reading the below documentation of "rag_ce_example.py" These explanations of the code were initially provided by prompt engineered chatbot responses, then both lightly edited for brevity and interspersed logically among the code by a human. One way to better understand how a RAG works is to read the description of the function of the code of the first component, read its corresponding code, do the same for the second component and analyze how the two components relate or depend on each other. Following is the documentation.
 
+## 1. Install packages
+
 First, import torch, a library for machine learning tasks. Then, import pretrained models from the HuggingFace transformers library: 
 
 * The pipeline function provides a simple API to perform NLP tasks using pretrained models. It abstracts away the complexity of loading models and tokenizers, making it easy to use them for inference.
@@ -111,7 +113,7 @@ from transformers import pipeline
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, GenerationConfig
 ```
 
-Next, the LangChain framework and Hugging Face's models integrate to provide open-source libraries and tools for building context awareness and reasoning:   
+Next, install the LangChain framework and Hugging Face's models; they integrate to provide open-source libraries and tools for building context awareness and reasoning:   
 
 * HuggingFacePipeline provides a high-level API to perform tasks such as text classification and question answering.
 * UnstructuredMarkdownLoader loads markdown files.
@@ -152,7 +154,11 @@ from accelerate import load_checkpoint_and_dispatch
 from accelerate import init_empty_weights
 ```
 
-placeholder for next explanatory text
+##2. Define and retrieve data
+
+Next, xxxx :   
+
+* xxx
 
 ```bash
 def format_docs(docs):
@@ -174,7 +180,11 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     model.resize_token_embeddings(len(tokenizer))
 ```
 
-placeholder for next explanatory text
+##3. Load, split, chunk and embed documents
+
+Next, xxxx :   
+
+* xxx
 
 ```bash
     # RAG
@@ -196,7 +206,11 @@ placeholder for next explanatory text
     )
 ```
 
-placeholder for next explanatory text
+##3. Store documents
+
+Next, xxxx :   
+
+* xxx
 
 ```bash
     # only need to insert document once
@@ -208,7 +222,11 @@ placeholder for next explanatory text
     # print(results[0].page_content)
 ```
 
-placeholder for next explanatory text
+##4. Augment documents with a prompt
+
+Next, xxxx :   
+
+* xxx
 
 ```bash
        
@@ -217,7 +235,27 @@ placeholder for next explanatory text
     temperature = 0.8
 ```
 
-placeholder for next explanatory text
+##5. Configure LLM generation settings
+
+Next, xxxx :   
+
+* xxx
+
+```bash
+    MODEL_NAME = in_MODEL_NAME
+    generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
+    generation_config.temperature = temperature
+    generation_config.top_p = 0.95
+    generation_config.top_k = 40
+    generation_config.do_sample = True if temperature > 0.0 else False
+    generation_config.max_new_tokens = 512
+```
+
+##6. Tune and test hyperparameter changes
+
+Next, tune and test changes to the hyperparameters on the same code block as in the previous step. For example,  :   
+
+* xxx
 
 ```bash
     MODEL_NAME = in_MODEL_NAME
@@ -238,7 +276,12 @@ placeholder for next explanatory text
     generation_config.max_new_tokens = 512
 ```
 
-placeholder for next explanatory text
+##7. Document generation pipeline
+
+Next, set up a text generation pipeline using Hugging Face's Transformers library and integrate it with LangChain:   
+
+* xxx
+
 
 ```bash
     
@@ -253,7 +296,12 @@ placeholder for next explanatory text
     llm = HuggingFacePipeline(pipeline=text_pipeline) 
 ```
 
-placeholder for next explanatory text
+##8. Use an LLM and a similarity search database to generate answers to questions 
+
+Next, xx:   
+
+* xxx
+
 
 ```bash
 
@@ -268,7 +316,11 @@ placeholder for next explanatory text
         print("=====================================================")
  ```
 
-placeholder for next explanatory text
+##9. Set up command-line interface (CLI) to run the script 
+
+This setup allows you to run the script from the command line, passing the model path and name as arguments:   
+
+* xxx
 
 ```bash           
 
