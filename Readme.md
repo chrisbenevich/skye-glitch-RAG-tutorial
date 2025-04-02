@@ -154,7 +154,7 @@ from accelerate import load_checkpoint_and_dispatch
 from accelerate import init_empty_weights
 ```
 
-##2. Define and retrieve data
+## 2. Define and retrieve data
 
 Next, xxxx :   
 
@@ -180,7 +180,7 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     model.resize_token_embeddings(len(tokenizer))
 ```
 
-##3. Load, split, chunk and embed documents
+## 3. Load, split, chunk and embed documents
 
 Next, xxxx :   
 
@@ -206,7 +206,7 @@ Next, xxxx :
     )
 ```
 
-##3. Store documents
+## 4. Store documents
 
 Next, xxxx :   
 
@@ -222,7 +222,7 @@ Next, xxxx :
     # print(results[0].page_content)
 ```
 
-##4. Augment documents with a prompt
+## 5. Augment documents with a prompt
 
 Next, xxxx :   
 
@@ -235,7 +235,7 @@ Next, xxxx :
     temperature = 0.8
 ```
 
-##5. Configure LLM generation settings
+## 6. Configure LLM generation settings
 
 Next, xxxx :   
 
@@ -251,7 +251,7 @@ Next, xxxx :
     generation_config.max_new_tokens = 512
 ```
 
-##6. Tune and test hyperparameter changes
+## 7. Tune and test hyperparameter changes
 
 Next, tune and test changes to the hyperparameters on the same code block as in the previous step. For example,  :   
 
@@ -276,7 +276,7 @@ Next, tune and test changes to the hyperparameters on the same code block as in 
     generation_config.max_new_tokens = 512
 ```
 
-##7. Document generation pipeline
+## 8. Document generation pipeline
 
 Next, set up a text generation pipeline using Hugging Face's Transformers library and integrate it with LangChain:   
 
@@ -296,7 +296,7 @@ Next, set up a text generation pipeline using Hugging Face's Transformers librar
     llm = HuggingFacePipeline(pipeline=text_pipeline) 
 ```
 
-##8. Use an LLM and a similarity search database to generate answers to questions 
+## 9. Use an LLM and a similarity search database to generate answers to questions 
 
 Next, xx:   
 
@@ -316,7 +316,7 @@ Next, xx:
         print("=====================================================")
  ```
 
-##9. Set up command-line interface (CLI) to run the script 
+## 10. Set up command-line interface (CLI) to run the script 
 
 This setup allows you to run the script from the command line, passing the model path and name as arguments:   
 
