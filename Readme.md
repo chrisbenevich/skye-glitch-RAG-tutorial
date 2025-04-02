@@ -111,18 +111,18 @@ from transformers import pipeline
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, GenerationConfig
 ```
 
-Next, the LangChain framework and Hugging Face's models integrate to provide open-source libraries and tools for building context-aware, reasoning applications:   
+Next, the LangChain framework and Hugging Face's models integrate to provide open-source libraries and tools for building context awareness and reasoning:   
 
 * HuggingFacePipeline provides a high-level API to perform tasks such as text classification and question answering.
 * UnstructuredMarkdownLoader loads markdown files.
 * DirectoryLoader loads documents from a directory on your filesystem.
 * Hugging Face Transformers library in Python provides a wide range of pre-trained models for NLP tasks, such as text classification, named entity recognition and question answering.
 * RecursiveCharacterTextSplitter splits text into smaller chunks by recursively looking at characters.
-* HuggingFaceEmbeddings .
-* Chroma .
-* StrOutputParser .
-* EmbeddingsRedundantFilter .
-* DocumentCompressorPipeline .
+* HuggingFaceEmbeddings is a class in LangChain that utilizes Hugging Face's sentence transformer models to generate embeddings for text. Embeddings are numerical representations of text that capture semantic meaning.
+* Chroma is a vector database that stores and manages embeddings.
+* StrOutputParser parses LLMs output into the most likely string.
+* EmbeddingsRedundantFilter compares embeddings to filter out redundant documents.
+* DocumentCompressorPipeline compresses documents, retaining only the information relevant to the query.
 
 
 ```bash
