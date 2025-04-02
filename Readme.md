@@ -127,10 +127,11 @@ from langchain.retrievers.document_compressors import DocumentCompressorPipeline
 from accelerate import infer_auto_device_map
 from accelerate import load_checkpoint_and_dispatch
 from accelerate import init_empty_weights
+```
 
+placeholder for next explanatory text
 
-
-
+```bash
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
@@ -148,7 +149,11 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     model.config.end_token_id = tokenizer.eos_token_id
     model.config.pad_token_id = model.config.eos_token_id
     model.resize_token_embeddings(len(tokenizer))
+```
 
+placeholder for next explanatory text
+
+```bash
     # RAG
     loader = DirectoryLoader('./ce311k/notebooks/lectures/', glob="**/*_solutions.md", show_progress=True, loader_cls=UnstructuredMarkdownLoader, load_hidden=False)
     # fix for ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)
@@ -166,7 +171,11 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
         model_kwargs={'device': 'cuda'},
         encode_kwargs={"normalize_embeddings": True},
     )
+```
 
+placeholder for next explanatory text
+
+```bash
     # only need to insert document once
     db = Chroma.from_documents(texts, embeddings, persist_directory="db_ce")
     # after you run the code for the first time, you can re-use the database with the following command
@@ -174,12 +183,20 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     # you can test retrieved results with the following lines:
     # results = db.similarity_search("data structure", k=2)
     # print(results[0].page_content)
+```
 
+placeholder for next explanatory text
+
+```bash
        
 
     messages = ["How to solve system of linear equations using Gauss Elimination?", "How to check length of matrix with python?", "Where can I read more about Numpy?"]
     temperature = 0.8
+```
 
+placeholder for next explanatory text
+
+```bash
     MODEL_NAME = in_MODEL_NAME
     generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
     generation_config.temperature = temperature
@@ -196,7 +213,11 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     # nonsensical output. Resulted in: incorrect use of $ symbol in mathematical equation
     # and repeating an input question except with slightly different word order
     generation_config.max_new_tokens = 512
+```
 
+placeholder for next explanatory text
+
+```bash
     
     text_pipeline = pipeline(
         "text-generation",
@@ -207,7 +228,11 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     )
 
     llm = HuggingFacePipeline(pipeline=text_pipeline) 
+```
 
+placeholder for next explanatory text
+
+```bash
 
     for question in messages:
         results = db.similarity_search(question, k=2)
@@ -218,7 +243,11 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
         print("Here is the answer:")
         print(tokenizer.decode(outputs.cpu().squeeze()).split(question)[-1])
         print("=====================================================")
-            
+ ```
+
+placeholder for next explanatory text
+
+```bash           
 
 if __name__=="__main__":
     import argparse
