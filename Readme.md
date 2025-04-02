@@ -245,7 +245,7 @@ Next, include the queries for the model and the temperature for the results. A c
     temperature = 0.8
 ```
 
-## 6. Configure LLM generation settings
+## 6.a. Configure LLM generation settings
 
 Next, configure the generation settings for the LLM with Hugging Face's Transformers library. This helps control the behavior of the model during text generation, balancing between randomness and coherence:   
 
@@ -259,11 +259,9 @@ Next, configure the generation settings for the LLM with Hugging Face's Transfor
     generation_config.max_new_tokens = 512
 ```
 
-## 7. Tune and test hyperparameter changes
+## 6.b. Test hyperparameter changes
 
-Next, tune and test changes to the hyperparameters on the same code block as in the previous step. For example,  :   
-
-* xxx
+While not a separate step of building a RAG, to better understand what hyperparameters do, take another look at the previous block of code. Experiment with changing one hyperparameter at a time. Insert a comment documenting what you changed and what you expect as a result of the change. Then, re-run the entire code and document the actual result. An example of documenting changes to hyperparameters follows:   
 
 ```bash
     MODEL_NAME = in_MODEL_NAME
@@ -284,11 +282,9 @@ Next, tune and test changes to the hyperparameters on the same code block as in 
     generation_config.max_new_tokens = 512
 ```
 
-## 8. Document generation pipeline
+## 7. Document generation pipeline
 
 Next, set up a text generation pipeline using Hugging Face's Transformers library and integrate it with LangChain:   
-
-* xxx
 
 
 ```bash
@@ -304,10 +300,10 @@ Next, set up a text generation pipeline using Hugging Face's Transformers librar
     llm = HuggingFacePipeline(pipeline=text_pipeline) 
 ```
 
-## 9. Augment the prompt and generate answers to questions 
+## 8. Augment the prompt and generate answers to questions 
 
 
-Retrieves relevant documents, formats them, provides context to augment the prompt and generates a concise answer:   
+Retrieve relevant documents, format them, provide context to augment the prompt and generate a concise answer:   
 
 
 ```bash
@@ -323,11 +319,10 @@ Retrieves relevant documents, formats them, provides context to augment the prom
         print("=====================================================")
  ```
 
-## 10. Set up command-line interface (CLI) to run the script 
+## 9. Set up command-line interface (CLI) to run the script 
 
-This setup allows you to run the script from the command line, passing the model path and name as arguments:   
+Next, include code to run the script from the command line, passing the model path and name as arguments:   
 
-* xxx
 
 ```bash           
 
