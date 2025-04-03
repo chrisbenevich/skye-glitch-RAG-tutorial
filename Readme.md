@@ -261,7 +261,7 @@ Next, configure the generation settings for the LLM with Hugging Face's Transfor
 
 ## 6.b. Test hyperparameter changes
 
-While not a separate step of building a RAG, to better understand what hyperparameters do, take another look at the previous block of code. Experiment with changing one hyperparameter at a time. Insert a comment documenting what you changed and what you expect as a result of the change. Then, re-run the entire code and document the actual result. An example of documenting changes to hyperparameters follows:   
+While not a separate step of building a RAG, to better understand what hyperparameters do, take another look at the previous block of code. Experiment with changing one hyperparameter at a time. Insert a comment documenting what you changed and what you expect as a result of the change. Then, re-run the entire code and document the actual result. An example of documenting qualitative changes to hyperparameters follows:   
 
 ```bash
     MODEL_NAME = in_MODEL_NAME
