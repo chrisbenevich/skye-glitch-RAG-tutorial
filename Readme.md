@@ -290,7 +290,15 @@ Next, include the queries for the model and the temperature for the results. A c
 
 ## 6 Configure LLM generation settings
 
-Next, configure the generation settings for the LLM with Hugging Face's Transformers library. This helps control the behavior of the model during text generation, balancing between randomness and coherence:   
+Next, configure the generation settings (a subset of hyperparameters specifically tailored for the text generation phase) for the LLM with Hugging Face's Transformers library. This helps control the behavior of the model during text generation, balancing between randomness and coherence:
+
+* ( reformat bullets interspersed among code as above )
+
+* temperature: This controls the randomness of predictions by scaling the logits before applying softmax. Lower values make the model more deterministic, while higher values make it more random.
+* top_p: This is used for nucleus sampling. It sets a probability threshold for selecting the next token. Only the smallest set of tokens with a cumulative probability above top_p are considered.
+* top_k: This limits the sampling pool to the top k tokens with the highest probabilities. It helps in controlling the diversity of the generated text.
+* do_sample: This boolean flag determines whether to sample from the distribution or take the most probable token. It's set to True if temperature is greater than 0, allowing for more diverse outputs.
+* max_new_tokens: This sets the maximum number of new tokens to generate in the output sequence.
 
 ```bash
     MODEL_NAME = in_MODEL_NAME
