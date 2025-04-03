@@ -217,8 +217,8 @@ model.eval()
 
 Next, set up a pipeline to load Markdown files, fix SSL issues, download necessary NLTK data, split the text into manageable chunks, and generate embeddings using a specified model:   
 
-* DirectoryLoader: This line initializes a DirectoryLoader to load markdown files from the specified directory (./ce311k/notebooks/lectures/). It uses a glob pattern to match files ending with _solutions.md, shows progress during loading, uses UnstructuredMarkdownLoader to process the files, and does not load hidden files.
-* SSL Certificate Fix: This block of code fixes an SSL certificate verification error by changing the default HTTPS context. 
+* Initialize a DirectoryLoader to load markdown files from the specified directory (./ce311k/notebooks/lectures/). The DirectoryLoader uses a glob pattern to match files ending with _solutions.md, shows progress during loading, uses UnstructuredMarkdownLoader to process the files, and does not load hidden files.
+* The next line of code fixes an SSL certificate verification error by changing the default HTTPS context. 
 
 ```bash
     # RAG
@@ -227,8 +227,9 @@ Next, set up a pipeline to load Markdown files, fix SSL issues, download necessa
     import ssl
     ssl._create_default_https_context = ssl._create_stdlib_context
 ```
-* NLTK Downloads: This part downloads specific NLTK data packages needed for text processing.
-* Loading Documents: The loader.load() method loads the documents from the specified directory.
+
+* Download specific NLTK data packages needed for text processing.
+* Load the documents from the specified directory.
 
 
 ```bash
@@ -239,8 +240,8 @@ Next, set up a pipeline to load Markdown files, fix SSL issues, download necessa
     docs = loader.load()
 ```
 
-* Text Splitting: This initializes a RecursiveCharacterTextSplitter to split the loaded documents into chunks of 1024 characters with an overlap of 64 characters.
-* Embeddings: This part initializes HuggingFaceEmbeddings using the specified model (thenlper/gte-large) and sets it to use CUDA for GPU acceleration. It also normalizes the embeddings.
+* Initialize a RecursiveCharacterTextSplitter to split the loaded documents into chunks of 1024 characters with an overlap of 64 characters.
+* Initialize HuggingFaceEmbeddings using the specified model (thenlper/gte-large) and set it to use CUDA for GPU acceleration. Normalize the embeddings.
 
 
 ```bash
