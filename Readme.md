@@ -167,16 +167,16 @@ from accelerate import init_empty_weights
 
 Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters.   
  
-* This function takes a list of documents and formats them by joining their content with double newline characters / creates blank line between text segments.
+* Take a list of documents and format them by joining their content with double newline characters to create a blank line between text segments.
 
 ```bash
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 ``` 
 
-* path: Sets the path to the model.
-* tokenizer: Loads the tokenizer from the specified path using AutoTokenizer.
-* model_config: Loads the model configuration using AutoConfig.
+* Set the path to the model.
+* Load the tokenizer from the specified path using AutoTokenizer.
+* Load the model configuration using AutoConfig.
 
 ```bash
 def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/"):
@@ -185,16 +185,16 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     model_config = AutoConfig.from_pretrained(path)
 ``` 
  
-* init_empty_weights(): Initializes the model with empty weights.
-* AutoModelForCausalLM.from_config(model_config): Creates the model using the configuration.
+* Initialize the model with empty weights.
+* Create the model using the configuration.
 
 ```bash
 with init_empty_weights():
         model = AutoModelForCausalLM.from_config(model_config)
 ``` 
   
-* infer_auto_device_map(model): Infers the device map for distributing the model across available devices.
-* load_checkpoint_and_dispatch(model, path, device_map=device_map): Loads the model checkpoint and dispatches it across the devices.
+* Infer the device map for distributing the model across available devices.
+* Load the model checkpoint and dispatch it across the devices.
 
 ```bash
 device_map = infer_auto_device_map(model)
