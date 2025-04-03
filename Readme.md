@@ -154,9 +154,9 @@ from langchain.retrievers.document_compressors import DocumentCompressorPipeline
 
 Next, optimize and manage the deployment of the model across various devices.
 
-* infer_auto_device_map infers the optimal device map for distributing model layers across available devices (e.g., CPUs, GPUs), helping utilize hardware resources efficiently.
-* load_checkpoint_and_dispatch, based on the inferred device map, loads a model checkpoint and dispatches the model layers to the appropriate devices.
-* init_empty_weights initializes a model with empty weights, useful for setting up the model structure before loading actual weights.
+* Infer the optimal device map for distributing model layers across available devices (e.g., CPUs, GPUs) to help utilize hardware resources efficiently.
+* Based on the inferred device map, load a model checkpoint and dispatche the model layers to the appropriate devices.
+* Initialize a model with empty weights, useful for setting up the model structure before loading actual weights.
 
 ```bash
 
@@ -217,6 +217,16 @@ model.eval()
 
 Next, set up a pipeline to load Markdown files, process them into text chunks and generate embeddings using a Hugging Face model:   
 
+( reformat following as above interspersing explanation within code block )
+
+* DirectoryLoader: This line initializes a DirectoryLoader to load markdown files from the specified directory (./ce311k/notebooks/lectures/). It uses a glob pattern to match files ending with _solutions.md, shows progress during loading, uses UnstructuredMarkdownLoader to process the files, and does not load hidden files.
+* SSL Certificate Fix: This block of code fixes an SSL certificate verification error by changing the default HTTPS context. 
+* NLTK Downloads: This part downloads specific NLTK data packages needed for text processing.
+* Loading Documents: The loader.load() method loads the documents from the specified directory.
+* Text Splitting: This initializes a RecursiveCharacterTextSplitter to split the loaded documents into chunks of 1024 characters with an overlap of 64 characters.
+* Embeddings: This part initializes HuggingFaceEmbeddings using the specified model (thenlper/gte-large) and sets it to use CUDA for GPU acceleration. It also normalizes the embeddings.
+
+Overall, this code is designed to load markdown files, fix SSL issues, download necessary NLTK data, split the text into manageable chunks, and generate embeddings using a specified model.
 
 ```bash
     # RAG
