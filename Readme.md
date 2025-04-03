@@ -215,18 +215,10 @@ model.eval()
 
 ## 3. Load, split, chunk and embed documents
 
-Next, set up a pipeline to load Markdown files, process them into text chunks and generate embeddings using a Hugging Face model:   
-
-( reformat following as above interspersing explanation within code block )
+Next, set up a pipeline to load Markdown files, fix SSL issues, download necessary NLTK data, split the text into manageable chunks, and generate embeddings using a specified model:   
 
 * DirectoryLoader: This line initializes a DirectoryLoader to load markdown files from the specified directory (./ce311k/notebooks/lectures/). It uses a glob pattern to match files ending with _solutions.md, shows progress during loading, uses UnstructuredMarkdownLoader to process the files, and does not load hidden files.
 * SSL Certificate Fix: This block of code fixes an SSL certificate verification error by changing the default HTTPS context. 
-* NLTK Downloads: This part downloads specific NLTK data packages needed for text processing.
-* Loading Documents: The loader.load() method loads the documents from the specified directory.
-* Text Splitting: This initializes a RecursiveCharacterTextSplitter to split the loaded documents into chunks of 1024 characters with an overlap of 64 characters.
-* Embeddings: This part initializes HuggingFaceEmbeddings using the specified model (thenlper/gte-large) and sets it to use CUDA for GPU acceleration. It also normalizes the embeddings.
-
-Overall, this code is designed to load markdown files, fix SSL issues, download necessary NLTK data, split the text into manageable chunks, and generate embeddings using a specified model.
 
 ```bash
     # RAG
@@ -234,10 +226,24 @@ Overall, this code is designed to load markdown files, fix SSL issues, download 
     # fix for ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)
     import ssl
     ssl._create_default_https_context = ssl._create_stdlib_context
+```
+* NLTK Downloads: This part downloads specific NLTK data packages needed for text processing.
+* Loading Documents: The loader.load() method loads the documents from the specified directory.
+
+
+```bash
+
     import nltk
     nltk.download('averaged_perceptron_tagger_eng')
     nltk.download('punlt_tab')
     docs = loader.load()
+```
+
+* Text Splitting: This initializes a RecursiveCharacterTextSplitter to split the loaded documents into chunks of 1024 characters with an overlap of 64 characters.
+* Embeddings: This part initializes HuggingFaceEmbeddings using the specified model (thenlper/gte-large) and sets it to use CUDA for GPU acceleration. It also normalizes the embeddings.
+
+
+```bash
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=64)
     texts = text_splitter.split_documents(docs)
     #change to cuda on machine with GPU resource
