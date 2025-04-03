@@ -167,6 +167,19 @@ from accelerate import init_empty_weights
 
 Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters.   
 
+* format_docs(docs): This function takes a list of documents (docs) and formats them by joining their content (doc.page_content) with double newline characters (\n\n).
+* path: Sets the path to the model.
+* tokenizer: Loads the tokenizer from the specified path using AutoTokenizer.
+* model_config: Loads the model configuration using AutoConfig.
+* init_empty_weights(): Initializes the model with empty weights.
+* AutoModelForCausalLM.from_config(model_config): Creates the model using the configuration.
+* infer_auto_device_map(model): Infers the device map for distributing the model across available devices.
+* load_checkpoint_and_dispatch(model, path, device_map=device_map): Loads the model checkpoint and dispatches it across the devices.
+* model.eval(): Sets the model to evaluation mode.
+* model.config.end_token_id and model.config.pad_token_id: Configures the end and padding token IDs.
+* model.resize_token_embeddings(len(tokenizer)): Resizes the token embeddings to match the tokenizer's vocabulary size.
+
+
 ```bash
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
@@ -245,7 +258,7 @@ Next, include the queries for the model and the temperature for the results. A c
     temperature = 0.8
 ```
 
-## 6.a. Configure LLM generation settings
+## 6 Configure LLM generation settings
 
 Next, configure the generation settings for the LLM with Hugging Face's Transformers library. This helps control the behavior of the model during text generation, balancing between randomness and coherence:   
 
@@ -258,8 +271,6 @@ Next, configure the generation settings for the LLM with Hugging Face's Transfor
     generation_config.do_sample = True if temperature > 0.0 else False
     generation_config.max_new_tokens = 512
 ```
-
-## 6.b. Test hyperparameter changes
 
 While not a separate step of building a RAG, to better understand what hyperparameters do, take another look at the previous block of code. Experiment with changing one hyperparameter at a time. Insert a comment documenting what you changed and what you expect as a result of the change. Then, re-run the entire code and document the actual result. An example of documenting qualitative changes to hyperparameters follows:   
 
@@ -336,5 +347,3 @@ if __name__=="__main__":
     args = parser.parse_args()
     main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME)
 ```
-
-
