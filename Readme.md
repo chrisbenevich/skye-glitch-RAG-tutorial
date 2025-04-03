@@ -166,39 +166,52 @@ from accelerate import init_empty_weights
 ```
 
 Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters.   
-
-* format_docs(docs): This function takes a list of documents (docs) and formats them by joining their content (doc.page_content) with double newline characters (\n\n).
-* path: Sets the path to the model.
-* tokenizer: Loads the tokenizer from the specified path using AutoTokenizer.
-* model_config: Loads the model configuration using AutoConfig.
-* init_empty_weights(): Initializes the model with empty weights.
-* AutoModelForCausalLM.from_config(model_config): Creates the model using the configuration.
-* infer_auto_device_map(model): Infers the device map for distributing the model across available devices.
-* load_checkpoint_and_dispatch(model, path, device_map=device_map): Loads the model checkpoint and dispatches it across the devices.
-* model.eval(): Sets the model to evaluation mode.
-* model.config.end_token_id and model.config.pad_token_id: Configures the end and padding token IDs.
-* model.resize_token_embeddings(len(tokenizer)): Resizes the token embeddings to match the tokenizer's vocabulary size.
-
+ 
+* This function takes a list of documents and formats them by joining their content with double newline characters.
 
 ```bash
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
+``` 
 
+* path: Sets the path to the model.
+* tokenizer: Loads the tokenizer from the specified path using AutoTokenizer.
+* model_config: Loads the model configuration using AutoConfig.
+
+```bash
 def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/"):
     path = in_path
     tokenizer = AutoTokenizer.from_pretrained(path)   
     model_config = AutoConfig.from_pretrained(path)
-    
-   
-    with init_empty_weights():
+``` 
+ 
+* init_empty_weights(): Initializes the model with empty weights.
+* AutoModelForCausalLM.from_config(model_config): Creates the model using the configuration.
+
+```bash
+with init_empty_weights():
         model = AutoModelForCausalLM.from_config(model_config)
-    device_map = infer_auto_device_map(model)
+``` 
+  
+* infer_auto_device_map(model): Infers the device map for distributing the model across available devices.
+* load_checkpoint_and_dispatch(model, path, device_map=device_map): Loads the model checkpoint and dispatches it across the devices.
+
+```bash
+device_map = infer_auto_device_map(model)
     model = load_checkpoint_and_dispatch(model, path, device_map=device_map)
-    model.eval()
+``` 
+
+* model.eval(): Sets the model to evaluation mode.
+* model.config.end_token_id and model.config.pad_token_id: Configures the end and padding token IDs.
+* model.resize_token_embeddings(len(tokenizer)): Resizes the token embeddings to match the tokenizer's vocabulary size.
+
+```bash
+model.eval()
     model.config.end_token_id = tokenizer.eos_token_id
     model.config.pad_token_id = model.config.eos_token_id
     model.resize_token_embeddings(len(tokenizer))
 ```
+
 
 ## 3. Load, split, chunk and embed documents
 
