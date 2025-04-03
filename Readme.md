@@ -167,7 +167,7 @@ from accelerate import init_empty_weights
 
 Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters.   
  
-* This function takes a list of documents and formats them by joining their content with double newline characters.
+* This function takes a list of documents and formats them by joining their content with double newline characters / creates blank line between text segments.
 
 ```bash
 def format_docs(docs):
