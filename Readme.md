@@ -201,9 +201,9 @@ device_map = infer_auto_device_map(model)
     model = load_checkpoint_and_dispatch(model, path, device_map=device_map)
 ``` 
 
-* model.eval(): Sets the model to evaluation mode.
-* model.config.end_token_id and model.config.pad_token_id: Configures the end and padding token IDs.
-* model.resize_token_embeddings(len(tokenizer)): Resizes the token embeddings to match the tokenizer's vocabulary size.
+* Set the model to evaluation mode.
+* Configure the end and padding token IDs.
+* Resize the token embeddings to match the tokenizer's vocabulary size.
 
 ```bash
 model.eval()
