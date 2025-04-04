@@ -389,6 +389,11 @@ While not a separate step of building a RAG, to better understand what hyperpara
 Next, set up a text generation pipeline using Hugging Face's Transformers library and integrate it with LangChain.   
 
 
+* text_pipeline specifies the task as "text-generation" and uses the provided model, tokenizer, and generation_config. 
+* torch_dtype=torch.float16 sets the data type for the model's tensors to float16, helping reduce memory usage and speed up computations.
+* llm, a variable and instance of HuggingFacePipeline, effectively wraps the pipeline in a way that can be used for generating text based on the model and configuration provided.
+
+
 ```bash
     
     text_pipeline = pipeline(
