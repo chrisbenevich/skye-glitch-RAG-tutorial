@@ -444,9 +444,15 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
 
 Next, include code to run the script from the command line, passing the model path and name as arguments.   
 
+* Check if the script is run directly: if __name__=="__main__": ensures that the code inside this block runs only if the script is executed directly, not when imported as a module.
+* Import argparse: import argparse imports the argparse module, which is used for parsing command-line arguments.
+* Create argument parser: parser = argparse.ArgumentParser(description='Put in model name and path') initializes an argument parser with a description.
+* Add arguments:
+        parser.add_argument('--path', metavar='path', help='the path to model') adds an argument --path for specifying the path to the model.
+        parser.add_argument('--MODEL_NAME', metavar='path', help='name of model') adds an argument --MODEL_NAME for specifying the name of the model.
 
-```bash           
 
+```bash
 if __name__=="__main__":
     import argparse
     parser = argparse.ArgumentParser(description='Put in model name and path')
@@ -454,6 +460,15 @@ if __name__=="__main__":
                         help='the path to model')
     parser.add_argument('--MODEL_NAME', metavar='path', 
                         help='name of model')
+```
+  
+* Parse arguments: args = parser.parse_args() parses the command-line arguments provided by the user.
+* Call main function: main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME) calls the main function with the parsed arguments path and MODEL_NAME.
+
+
+```bash           
+
     args = parser.parse_args()
     main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME)
+
 ```
