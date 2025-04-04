@@ -111,7 +111,7 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 
 ## 12. Test retrieved results
 
-To test retrieved results, uncomment the following lines:
+To test retrieved results, uncomment the following lines.
 
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/9c2344a7eae9917c2c66400574ae3a777630a56d/rag_ce_example.py#L67
@@ -175,7 +175,7 @@ from langchain.retrievers.document_compressors import DocumentCompressorPipeline
 
 ## 2. Prepare and load the model
 
-Next, optimize and manage the deployment of the model across various devices.
+Next, optimize and manage the deployment of the model across various devices:
 
 * Infer the optimal device map for distributing model layers across available devices (e.g., CPUs, GPUs) to help utilize hardware resources efficiently.
 * Based on the inferred device map, load a model checkpoint and dispatche the model layers to the appropriate devices.
@@ -190,7 +190,7 @@ from accelerate import init_empty_weights
 ```
 
 
-Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters.   
+Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters:   
  
 * Take a list of documents and format them by joining their content with double newline characters to create a blank line between text segments.
 
@@ -294,7 +294,7 @@ Next, set up a pipeline to load Markdown files, fix SSL issues, download necessa
 
 ## 4. Store documents
 
-Instantiate the database:   
+Instantiate the database.   
 
 
 ```bash
@@ -323,7 +323,7 @@ To test retrieved results, uncomment the following.
 
 ## 5. Initialize questions and set temperature
 
-Next, include the queries for the model and the temperature for the results. A control of the randomness of the model's predictions, a temperature of 0.8 indicates a moderate level of randomness, allowing for more diverse outputs:   
+Next, include the queries for the model and the temperature for the results. A control of the randomness of the model's predictions, a temperature of 0.8 indicates a moderate level of randomness, allowing for more diverse outputs.   
 
 
 ```bash
@@ -386,7 +386,7 @@ While not a separate step of building a RAG, to better understand what hyperpara
 
 ## 7. Document generation pipeline
 
-Next, set up a text generation pipeline using Hugging Face's Transformers library and integrate it with LangChain:   
+Next, set up a text generation pipeline using Hugging Face's Transformers library and integrate it with LangChain.   
 
 
 ```bash
@@ -405,7 +405,7 @@ Next, set up a text generation pipeline using Hugging Face's Transformers librar
 
 ## 8. Augment the prompt and generate answers to questions 
 
-Retrieve relevant documents, format them, provide context to augment the prompt and generate a concise answer:   
+Retrieve relevant documents, format them, provide context to augment the prompt and generate a concise answer.   
 
 
 ```bash
@@ -424,7 +424,7 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
 
 ## 9. Set up command-line interface (CLI) to run the script 
 
-Next, include code to run the script from the command line, passing the model path and name as arguments:   
+Next, include code to run the script from the command line, passing the model path and name as arguments.   
 
 
 ```bash           
