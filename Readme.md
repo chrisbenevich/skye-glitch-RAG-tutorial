@@ -386,8 +386,7 @@ While not a separate step of building a RAG, to better understand what hyperpara
 
 ## 7. Document generation pipeline
 
-Next, set up a text generation pipeline using Hugging Face's Transformers library and integrate it with LangChain.   
-
+Next, set up a text generation pipeline using Hugging Face's Transformers library and integrate it with LangChain:   
 
 * text_pipeline specifies the task as "text-generation" and uses the provided model, tokenizer, and generation_config. 
 * torch_dtype=torch.float16 sets the data type for the model's tensors to float16, helping reduce memory usage and speed up computations.
@@ -410,7 +409,11 @@ Next, set up a text generation pipeline using Hugging Face's Transformers librar
 
 ## 8. Augment the prompt and generate answers to questions 
 
-Retrieve relevant documents, format them, provide context to augment the prompt and generate a concise answer.   
+Retrieve relevant documents, format them, provide context to augment the prompt and generate a concise answer. For each question in the messages list, the code performs the following steps:   
+
+* Search the database for the top 2 documents most similar to the question.
+* Format the retrieved documents into a suitable context for the model.
+* Instruct the model and the retrieved context with the prompt variable.
 
 
 ```bash
@@ -419,6 +422,16 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
         results = db.similarity_search(question, k=2)
         retrieved_context = format_docs(results)
         prompt = f"system: You are a TA for students. Use the following retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use one sentences maximum and keep the answer concise. Give students hints instead of telling them the answer.\"\n human:{retrieved_context} \n human: {question}"
+```
+
+
+* Tokenize the prompt and prepare it for input to the model, moving the tensors to the appropriate device (e.g., GPU).
+* Generate output from the model based on the prompt, with a maximum of 512 new tokens and sampling enabled.
+* Decode and print the answer, extracting it from the decoded text by splitting it at the question and taking the part after it.
+
+
+```bash
+
         inputs = tokenizer(prompt,return_tensors="pt").to(0)
         outputs = model.generate(**inputs, max_new_tokens=512, do_sample=True)[0]
         print("Here is the answer:")
