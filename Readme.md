@@ -7,6 +7,34 @@
 git clone https://github.com/skye-glitch/RAG_tutorial.git
 ```
 
+## 1.a. Set up virtual environment
+
+```bash
+mkdir testProject
+python3 -m venv testEnv
+ls
+cd testEnv/
+ls
+source bin/activate
+pip install torch
+python3
+import torch
+import langchain
+import accelerate
+
+to load from beginning of session:
+
+cd testEnv/
+ls
+
+then to import a package, go to python via:
+python3
+import numpy
+
+can mention setting up requirements file to , here's the 3 packages you'll need to run this, goes in same level as readme file
+
+
+
 ## 2. Enter Slurm script 
 
 While you are able to get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/), you will have to monitor in the Terminal when you connect to the node and then submit your job. For greater productivity, it is recommended to submit your job using Slurm script. This way, you can request the compute node, submit your job and be alerted when it is complete. 
