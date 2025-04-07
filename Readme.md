@@ -9,6 +9,8 @@ git clone https://github.com/skye-glitch/RAG_tutorial.git
 
 ## 1.a. Set up virtual environment
 
+insert intro text
+
 ```bash
 mkdir testProject
 python3 -m venv testEnv
@@ -30,8 +32,11 @@ ls
 then to import a package, go to python via:
 python3
 import numpy
+```
 
-can mention setting up requirements file to , here's the 3 packages you'll need to run this, goes in same level as readme file
+## 1.b. Create requirements file
+
+add text, set up requirements file , why used , here's the 3 packages you'll need to run this, goes in same level as readme file, add bash of what to type
 
 
 
