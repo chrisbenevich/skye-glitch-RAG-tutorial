@@ -30,7 +30,7 @@ In this step, edit the below Slurm script using your TACC account information [S
 
 ## 3. Enter script and submit job to compute node on HPC
 
-Beneath the Slurm script at the command line, enter the code from "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py line by line. Begin at the first line, https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L1 and finish with https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L123.
+Beneath the Slurm script at the command line, enter the code from "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py line by line. Begin at the first line: https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L1 and finish with the last line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L123.
 
 ## 4. Change directory
 
