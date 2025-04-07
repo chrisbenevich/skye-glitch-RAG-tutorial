@@ -2,6 +2,7 @@
 
 ## 1. Retrive the original code and dataset 
 
+insert intro text
 
 ```bash
 git clone https://github.com/skye-glitch/RAG_tutorial.git
@@ -36,7 +37,7 @@ import numpy
 
 ## 1.b. Create requirements file
 
-add text, set up requirements file , why used , here's the 3 packages you'll need to run this, goes in same level as readme file, add bash of what to type
+add text, set up requirements file , why used , here's the 3 packages you'll need to run this, goes in same level as readme file, add bash of what to type, renumber instructions
 
 
 
