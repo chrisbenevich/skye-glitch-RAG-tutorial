@@ -1,5 +1,12 @@
 # How to Run RAG Tutorial Code on an HPC
 
+
+## 0. Understand basic Terminal use 
+
+This tutorial assumes a beginner's understanding of the Terminal. One introduction to using command line prompts in the Terminal is at the following link.
+
+https://www.freecodecamp.org/news/command-line-for-beginners/
+
 ## 1. Retrive the original code and dataset 
 
 Log into your GitHub account and clone the repository. 
