@@ -477,7 +477,7 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
 
 ## 9. Set up command-line interface (CLI) to run the script 
 
-Next, include code to run the script from the command line, passing the model path and name as arguments.   
+Next, include code to run the script from the command line, passing the model path and name as arguments:   
 
 * Check if the script is run directly: if __name__=="__main__": ensures that the code inside this block runs only if the script is executed directly, not when imported as a module.
 * Import argparse: import argparse imports the argparse module, which is used for parsing command-line arguments.
@@ -505,3 +505,5 @@ if __name__=="__main__":
     main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME)
 
 ```
+
+Congratulations! You have now recreated and ran a RAG on an HPC.
