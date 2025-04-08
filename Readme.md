@@ -2,28 +2,56 @@
 
 ## 1. Retrive the original code and dataset 
 
-insert intro text
+Log into your GitHub account and clone the repository. 
 
 ```bash
 git clone https://github.com/skye-glitch/RAG_tutorial.git
 ```
 
+If you do not have a GitHub account, open one. Then, using the above command at the command prompt, clone the repository. For detailed instructions, visit the following link. 
+
+https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository 
+
+
 ## 1.a. Set up virtual environment
 
-insert intro text
+To ensure the correct packages are available for your project, create a virtual environment. 
+
+* For business continuity and organizational purposes, consider where you would like to save the virtual environment. In this example, I create a new directory at the command prompt called RAG and a virtual environment called RAGTutorial as follows.
 
 ```bash
-mkdir testProject
-python3 -m venv testEnv
+mkdir RAG
+python3 -m venv RAGTutorial
+```
+
+* Verify your directory installed, change directories and verify your virtual environment installed.
+
+```bash
 ls
-cd testEnv/
+cd RAGTutorial/
 ls
+```
+
+* Activate the virtual environment.
+
+```bash
 source bin/activate
+```
+
+* Install the PyTorch package.
+
+```bash
 pip install torch
+```
+
+* Switch the environment to operate in Python and import the packages needed for the tutorial.
+
+```bash
 python3
 import torch
 import langchain
 import accelerate
+```
 
 to load from beginning of session:
 
