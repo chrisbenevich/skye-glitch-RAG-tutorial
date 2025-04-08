@@ -3,7 +3,7 @@
 
 ## 1. Log on to TAP  
 
-While several methods exist to run code on TACC's HPCs, logging on to TAP is a simple way to start the process using multifactor authentication at the following link:
+While several methods exist to run code on TACC's HPCs, logging on to TAP is a simple way to start the process using multifactor authentication at the following link.
 
 https://tap.tacc.utexas.edu/mfalogin/
 
@@ -13,6 +13,7 @@ https://tap.tacc.utexas.edu/mfalogin/
 This tutorial assumes a basic understanding of the Terminal. If needed, one introduction to using command line prompts in the Terminal is at the following link.
 
 https://www.freecodecamp.org/news/command-line-for-beginners/
+
 
 ## 3. Retrive the original code and dataset 
 
@@ -67,23 +68,17 @@ import langchain
 import accelerate
 ```
 
-You can now proceed to the next step in the tutorial. 
-
-Else, if for any reason you need to end your session and return to the tutorial, you can load the virtual environment from the beginning of your session as follows:
+* If for any reason you need to end your session and return to the tutorial, you can load the virtual environment from the beginning of your session as follows.
 
 ```bash
 cd RAG_VE/
 ls
 ```
 
-Once you return to the tutorial and reload your virtual environment, proceed to the next step in the tutorial
-
-## 5. Create requirements file
-
-add text, set up requirements file , why used , here's the 3 packages you'll need to run this, goes in same level as readme file, add bash of what to type, renumber instructions
+* Once you return to the tutorial and reload your virtual environment, proceed to the next step in the tutorial.
 
 
-## 6. Enter Slurm script 
+## 5. Enter Slurm script 
 
 While you are able to get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/), you will have to monitor in the Terminal when you connect to the node and then submit your job. For greater productivity, it is recommended to submit your job using Slurm script. This way, you can request the compute node, submit your job and be alerted when it is complete. 
 
@@ -104,11 +99,14 @@ In this step, edit the below Slurm script using your TACC account information [S
 ```
 
 
-## 7. Enter script and submit job to compute node on HPC
+## 6. Enter script and submit job to compute node on HPC
 
-Beneath the Slurm script at the command line, enter the code from "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py line by line. Begin at the first line: https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L1 and finish with the last line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L123.
+Beneath the Slurm script at the command line, enter the code from "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py line by line. 
 
-## 8. Change directory
+Begin at the first line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L1 and finish with the last line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L123.
+
+
+## 7. Change directory
 
 Change the directory to where the content resides in your directory on the HPCs. If you cloned the GitHub repo to your home directory to a folder called RAG_tutorial as I did, you will enter the HPC system at your home directory. To then move from your home directory to a folder called RAG_tutorial, enter the following at the command line.
 
@@ -118,17 +116,16 @@ cd RAG_tutorial
 ```
 
 
-## 9. Load the apptainer module with Slurm script
-
+## 8. Load the apptainer module with Slurm script
 
 ```bash
 module load tacc-apptainer
 ```
 
 
-## 10. Pull container into your HPC $SCRATCH directory with Slurm script
-Run the following once.
+## 9. Pull container into your HPC $SCRATCH directory with Slurm script
 
+Run the following once.
 
 ```bash
 current_dir=$(pwd)
@@ -138,9 +135,9 @@ cd "$current_dir"
 ```
 
 
-## 11. Download model with Slurm script
-Run the following once.
+## 10. Download model with Slurm script
 
+Run the following once.
 
 ```bash
 apptainer exec $SCRATCH/taccgptback_latest.sif \
@@ -148,8 +145,7 @@ apptainer exec $SCRATCH/taccgptback_latest.sif \
 ```
 
 
-## 12. Launch command in container with Slurm script
-
+## 11. Launch command in container with Slurm script
 
 ```bash
 apptainer exec --nv $SCRATCH/taccgptback_latest.sif \
@@ -158,47 +154,44 @@ python3 rag_ce_example.py \
 --MODEL_NAME="$SCRATCH/facebook/opt-1.3b/" 
 ```
 
-
 You have now run the tutorial code.
 
-## 13. Instantiated database
+
+## 12. Instantiated database
 
 While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The code to instantiate the database is located at the following line of code in the .py.
-
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
 
-## 14. Prevent multiple database instantiations
+## 13. Prevent multiple database instantiations
 
 To avoid loading the database more than once, comment out the following.
-
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
 
-## 15. Enable database queries
+## 14. Enable database queries
 
 To query the database consequently, uncomment the following.
-
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/317f544579e16de79e79ef36b3e97be03fd7bbde/rag_ce_example.py#L65
 
 
-## 16. Test retrieved results
+## 15. Test retrieved results
 
 To test retrieved results, uncomment the following lines.
 
-
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/9c2344a7eae9917c2c66400574ae3a777630a56d/rag_ce_example.py#L67
 
-   
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/9c2344a7eae9917c2c66400574ae3a777630a56d/rag_ce_example.py#L68
 
 
 # Understanding RAG Tutorial Components and Dependencies
 
-Once you have seen how the job runs on an HPC, explore the components and dependencies of a RAG by reading the below documentation of "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py. These explanations of the code were initially provided by prompt engineered chatbot responses, then both lightly edited for brevity and interspersed logically among the code by a human. One way to better understand how a RAG works is to read the description of the function of the code of the first component, read its corresponding code, do the same for the second component and analyze how the two components relate or depend on each other. Following is the documentation of ten steps to set up a RAG.
+Once you have seen how the job runs on an HPC, explore the components and dependencies of a RAG by reading the below documentation of "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py. These explanations of the code were initially provided by prompt engineered chatbot responses, then both lightly edited for brevity and interspersed logically among the code by a human. 
+
+One way to better understand how a RAG works is to read the description of the function of the code of the first component, read its corresponding code, do the same for the second component and analyze how the two components relate or depend on each other. Following is the documentation of ten steps to set up a RAG.
 
 ## 1. Install packages
 
@@ -210,15 +203,12 @@ First, import torch, a library for machine learning tasks. Then, import pretrain
 * AutoModelForCausalLM is a class that loads a pretrained model with a causal language modeling head. Causal language models are designed to predict the next token in a sequence. A token is an NLP unit that represents a piece of text.
 * GenerationConfig is a class that configures text generation parameters, such as setting the maximum length of the generated text or choosing the decoding strategy. A decoding strategy determines how the model selects the next word in a sequence based on the probabilities assigned to each possible word. 
 
-
 ```bash
 import torch
-
 
 from transformers import pipeline
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, GenerationConfig
 ```
-
 
 Next, install the LangChain framework and Hugging Face's models; they integrate to provide open-source libraries and tools for building context awareness and reasoning:   
 
@@ -232,7 +222,6 @@ Next, install the LangChain framework and Hugging Face's models; they integrate 
 * StrOutputParser parses LLMs output into the most likely string.
 * EmbeddingsRedundantFilter compares embeddings to filter out redundant documents.
 * DocumentCompressorPipeline compresses documents, retaining only the information relevant to the query.
-
 
 ```bash
 # for RAG
@@ -257,7 +246,6 @@ Next, optimize and manage the deployment of the model across various devices:
 * Based on the inferred device map, load a model checkpoint and dispatche the model layers to the appropriate devices.
 * Initialize a model with empty weights, useful for setting up the model structure before loading actual weights.
 
-
 ```bash
 
 from accelerate import infer_auto_device_map
@@ -265,22 +253,18 @@ from accelerate import load_checkpoint_and_dispatch
 from accelerate import init_empty_weights
 ```
 
-
 Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters:   
  
 * Take a list of documents and format them by joining their content with double newline characters to create a blank line between text segments.
-
 
 ```bash
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 ``` 
 
-
 * Set the path to the model.
 * Load the tokenizer from the specified path using AutoTokenizer.
 * Load the model configuration using AutoConfig.
-
 
 ```bash
 def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/"):
@@ -288,11 +272,9 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     tokenizer = AutoTokenizer.from_pretrained(path)   
     model_config = AutoConfig.from_pretrained(path)
 ``` 
-
  
 * Initialize the model with empty weights.
 * Create the model using the configuration.
-
 
 ```bash
 with init_empty_weights():
@@ -302,17 +284,14 @@ with init_empty_weights():
 * Infer the device map for distributing the model across available devices.
 * Load the model checkpoint and dispatch it across the devices.
 
-
 ```bash
 device_map = infer_auto_device_map(model)
     model = load_checkpoint_and_dispatch(model, path, device_map=device_map)
 ``` 
 
-
 * Set the model to evaluation mode.
 * Configure the end and padding token IDs.
 * Resize the token embeddings to match the tokenizer's vocabulary size.
-
 
 ```bash
 model.eval()
@@ -329,7 +308,6 @@ Next, set up a pipeline to load Markdown files, fix SSL issues, download necessa
 * Initialize a DirectoryLoader to load markdown files from the specified directory (./ce311k/notebooks/lectures/). The DirectoryLoader uses a glob pattern to match files ending with _solutions.md, shows progress during loading, uses UnstructuredMarkdownLoader to process the files, and does not load hidden files.
 * The next line of code fixes an SSL certificate verification error by changing the default HTTPS context. 
 
-
 ```bash
     # RAG
     loader = DirectoryLoader('./ce311k/notebooks/lectures/', glob="**/*_solutions.md", show_progress=True, loader_cls=UnstructuredMarkdownLoader, load_hidden=False)
@@ -338,10 +316,8 @@ Next, set up a pipeline to load Markdown files, fix SSL issues, download necessa
     ssl._create_default_https_context = ssl._create_stdlib_context
 ```
 
-
 * Download specific NLTK data packages needed for text processing.
 * Load the documents from the specified directory.
-
 
 ```bash
 
@@ -351,10 +327,8 @@ Next, set up a pipeline to load Markdown files, fix SSL issues, download necessa
     docs = loader.load()
 ```
 
-
 * Initialize a RecursiveCharacterTextSplitter to split the loaded documents into chunks of 1024 characters with an overlap of 64 characters.
 * Initialize HuggingFaceEmbeddings using the specified model (thenlper/gte-large) and set it to use CUDA for GPU acceleration. Normalize the embeddings.
-
 
 ```bash
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=64)
@@ -372,24 +346,19 @@ Next, set up a pipeline to load Markdown files, fix SSL issues, download necessa
 
 Instantiate the database.   
 
-
 ```bash
     db = Chroma.from_documents(texts, embeddings, persist_directory="db_ce")
 ```
-
 
 Note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. To avoid loading the database more than once, comment out the above line of code. 
 
 To query the database consequently, uncomment the following.
 
-
 ```bash
     # db = Chroma(persist_directory="db_ce", embedding_function=embeddings)
 ```
 
-
 To test retrieved results, uncomment the following.
-
 
 ```bash
     # results = db.similarity_search("data structure", k=2)
@@ -400,7 +369,6 @@ To test retrieved results, uncomment the following.
 ## 5. Initialize questions and set temperature
 
 Next, include the queries for the model and the temperature for the results. A control of the randomness of the model's predictions, a temperature of 0.8 indicates a moderate level of randomness, allowing for more diverse outputs.   
-
 
 ```bash
        
@@ -417,7 +385,6 @@ Next, configure the generation settings (a subset of hyperparameters specificall
 * top_p is used for nucleus sampling and sets a probability threshold for selecting the next token. 
 * top_k limits the sampling pool to the top k tokens with the highest probabilities, helping control the diversity of the generated text.
 
-
 ```bash
     MODEL_NAME = in_MODEL_NAME
     generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
@@ -426,19 +393,15 @@ Next, configure the generation settings (a subset of hyperparameters specificall
     generation_config.top_k = 40
 ```
 
-
 * do_sample, a boolean flag, determines whether to sample from the distribution or take the most probable token. It's set to True if temperature is greater than 0, allowing for more diverse outputs.
 * max_new_tokens sets the maximum number of new tokens to generate in the output sequence.
-
 
 ```bash
     generation_config.do_sample = True if temperature > 0.0 else False
     generation_config.max_new_tokens = 512
 ```
 
-
 While not a separate step of building a RAG, to better understand what hyperparameters do, take another look at the previous block of code. Experiment with changing one hyperparameter at a time. Insert a comment documenting what you changed and what you expect as a result of the change. Then, re-run the entire code and document the actual result. An example of documenting qualitative changes to hyperparameters follows:   
-
 
 ```bash
     MODEL_NAME = in_MODEL_NAME
@@ -468,7 +431,6 @@ Next, set up a text generation pipeline using Hugging Face's Transformers librar
 * torch_dtype=torch.float16 sets the data type for the model's tensors to float16, helping reduce memory usage and speed up computations.
 * llm, a variable and instance of HuggingFacePipeline, effectively wraps the pipeline in a way that can be used for generating text based on the model and configuration provided.
 
-
 ```bash
     
     text_pipeline = pipeline(
@@ -491,7 +453,6 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
 * Format the retrieved documents into a suitable context for the model.
 * Instruct the model and the retrieved context with the prompt variable.
 
-
 ```bash
 
     for question in messages:
@@ -500,11 +461,9 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
         prompt = f"system: You are a TA for students. Use the following retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use one sentences maximum and keep the answer concise. Give students hints instead of telling them the answer.\"\n human:{retrieved_context} \n human: {question}"
 ```
 
-
 * Tokenize the prompt and prepare it for input to the model, moving the tensors to the appropriate device (e.g., GPU).
 * Generate output from the model based on the prompt, with a maximum of 512 new tokens and sampling enabled.
 * Decode and print the answer, extracting it from the decoded text by splitting it at the question and taking the part after it.
-
 
 ```bash
 
@@ -527,7 +486,6 @@ Next, include code to run the script from the command line, passing the model pa
         parser.add_argument('--path', metavar='path', help='the path to model') adds an argument --path for specifying the path to the model.
         parser.add_argument('--MODEL_NAME', metavar='path', help='name of model') adds an argument --MODEL_NAME for specifying the name of the model.
 
-
 ```bash
 if __name__=="__main__":
     import argparse
@@ -540,7 +498,6 @@ if __name__=="__main__":
   
 * Parse arguments: args = parser.parse_args() parses the command-line arguments provided by the user.
 * Call main function: main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME) calls the main function with the parsed arguments path and MODEL_NAME.
-
 
 ```bash           
 
