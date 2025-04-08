@@ -31,18 +31,18 @@ https://docs.github.com/en/repositories/creating-and-managing-repositories/cloni
 
 To ensure the correct packages are available for your project, create a virtual environment. 
 
-* For business continuity and organizational purposes, consider where you would like to save the virtual environment. In this example, a new directory, called RAG, and a virtual environment, called RAGTutorial, are created at the command prompt as follows.
+* For business continuity and organizational purposes, consider where you would like to save the virtual environment. In this example, a new directory, called RAG_tutorial, and a virtual environment, called RAG_VE, are created at the command prompt as follows.
 
 ```bash
-mkdir RAG
-python3 -m venv RAGTutorial
+mkdir RAG_tutorial
+python3 -m venv RAG_VE
 ```
 
 * Verify that your directory installed, change directories and verify that your virtual environment installed.
 
 ```bash
 ls
-cd RAGTutorial/
+cd RAG_VE/
 ls
 ```
 
@@ -52,13 +52,13 @@ ls
 source bin/activate
 ```
 
-* Install the PyTorch package.
+* Install the PyTorch package in the virtual environment.
 
 ```bash
 pip install torch
 ```
 
-* Switch the environment to operate in Python and import the packages needed for the tutorial.
+* Modify the environment to operate in Python and import the packages needed for the tutorial.
 
 ```bash
 python3
@@ -67,13 +67,16 @@ import langchain
 import accelerate
 ```
 
-You can proceed to the next step in the tutorial. Else, if for any reason you need to end your session and return to the tutorial, you can load the virtual environment from the beginning of your session as follows:
+You can now proceed to the next step in the tutorial. 
+
+Else, if for any reason you need to end your session and return to the tutorial, you can load the virtual environment from the beginning of your session as follows:
 
 ```bash
-cd RAGTutorial/
+cd RAG_VE/
 ls
 ```
 
+Once you return to the tutorial and reload your virtual environment, proceed to the next step in the tutorial
 
 ## 5. Create requirements file
 
