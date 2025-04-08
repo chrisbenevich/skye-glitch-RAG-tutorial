@@ -1,37 +1,44 @@
 # How to Run RAG Tutorial Code on an HPC
 
 
-## 0. Understand basic Terminal use 
+## 1. Log on to TAP  
 
-This tutorial assumes a beginner's understanding of the Terminal. One introduction to using command line prompts in the Terminal is at the following link.
+While several methods exist to run code on TACC's HPCs, logging on to TAP is a simple way to start the process using multifactor authentication at the following link:
+
+https://tap.tacc.utexas.edu/mfalogin/
+
+
+## 2. Understand basic Terminal use 
+
+This tutorial assumes a basic understanding of the Terminal. If needed, one introduction to using command line prompts in the Terminal is at the following link.
 
 https://www.freecodecamp.org/news/command-line-for-beginners/
 
-## 1. Retrive the original code and dataset 
+## 3. Retrive the original code and dataset 
 
-Log into your GitHub account and clone the repository. 
+If you do not have a GitHub account, open one and clone the repository with the following command. 
 
 ```bash
 git clone https://github.com/skye-glitch/RAG_tutorial.git
 ```
 
-If you do not have a GitHub account, open one. Then, using the above command at the command prompt, clone the repository. For detailed instructions, visit the following link. 
+For detailed instructions on cloning GitHub repositories, visit the following link. 
 
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository 
 
 
-## 1.a. Set up virtual environment
+## 4. Set up virtual environment
 
 To ensure the correct packages are available for your project, create a virtual environment. 
 
-* For business continuity and organizational purposes, consider where you would like to save the virtual environment. In this example, I create a new directory at the command prompt called RAG and a virtual environment called RAGTutorial as follows.
+* For business continuity and organizational purposes, consider where you would like to save the virtual environment. In this example, a new directory, called RAG, and a virtual environment, called RAGTutorial, are created at the command prompt as follows.
 
 ```bash
 mkdir RAG
 python3 -m venv RAGTutorial
 ```
 
-* Verify your directory installed, change directories and verify your virtual environment installed.
+* Verify that your directory installed, change directories and verify that your virtual environment installed.
 
 ```bash
 ls
@@ -60,23 +67,20 @@ import langchain
 import accelerate
 ```
 
-to load from beginning of session:
+You can proceed to the next step in the tutorial. Else, if for any reason you need to end your session and return to the tutorial, you can load the virtual environment from the beginning of your session as follows:
 
-cd testEnv/
+```bash
+cd RAGTutorial/
 ls
-
-then to import a package, go to python via:
-python3
-import numpy
 ```
 
-## 1.b. Create requirements file
+
+## 5. Create requirements file
 
 add text, set up requirements file , why used , here's the 3 packages you'll need to run this, goes in same level as readme file, add bash of what to type, renumber instructions
 
 
-
-## 2. Enter Slurm script 
+## 6. Enter Slurm script 
 
 While you are able to get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/), you will have to monitor in the Terminal when you connect to the node and then submit your job. For greater productivity, it is recommended to submit your job using Slurm script. This way, you can request the compute node, submit your job and be alerted when it is complete. 
 
@@ -97,11 +101,11 @@ In this step, edit the below Slurm script using your TACC account information [S
 ```
 
 
-## 3. Enter script and submit job to compute node on HPC
+## 7. Enter script and submit job to compute node on HPC
 
 Beneath the Slurm script at the command line, enter the code from "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py line by line. Begin at the first line: https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L1 and finish with the last line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L123.
 
-## 4. Change directory
+## 8. Change directory
 
 Change the directory to where the content resides in your directory on the HPCs. If you cloned the GitHub repo to your home directory to a folder called RAG_tutorial as I did, you will enter the HPC system at your home directory. To then move from your home directory to a folder called RAG_tutorial, enter the following at the command line.
 
@@ -111,7 +115,7 @@ cd RAG_tutorial
 ```
 
 
-## 5. Load the apptainer module with Slurm script
+## 9. Load the apptainer module with Slurm script
 
 
 ```bash
@@ -119,7 +123,7 @@ module load tacc-apptainer
 ```
 
 
-## 6. Pull container into your HPC $SCRATCH directory with Slurm script
+## 10. Pull container into your HPC $SCRATCH directory with Slurm script
 Run the following once.
 
 
@@ -131,7 +135,7 @@ cd "$current_dir"
 ```
 
 
-## 7. Download model with Slurm script
+## 11. Download model with Slurm script
 Run the following once.
 
 
@@ -141,7 +145,7 @@ apptainer exec $SCRATCH/taccgptback_latest.sif \
 ```
 
 
-## 8. Launch command in container with Slurm script
+## 12. Launch command in container with Slurm script
 
 
 ```bash
@@ -154,7 +158,7 @@ python3 rag_ce_example.py \
 
 You have now run the tutorial code.
 
-## 9. Instantiated database
+## 13. Instantiated database
 
 While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The code to instantiate the database is located at the following line of code in the .py.
 
@@ -162,7 +166,7 @@ While not a separate step, note that after running "rag_ce_example.py." once, yo
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
 
-## 10. Prevent multiple database instantiations
+## 14. Prevent multiple database instantiations
 
 To avoid loading the database more than once, comment out the following.
 
@@ -170,7 +174,7 @@ To avoid loading the database more than once, comment out the following.
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
 
-## 11. Enable database queries
+## 15. Enable database queries
 
 To query the database consequently, uncomment the following.
 
@@ -178,7 +182,7 @@ To query the database consequently, uncomment the following.
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/317f544579e16de79e79ef36b3e97be03fd7bbde/rag_ce_example.py#L65
 
 
-## 12. Test retrieved results
+## 16. Test retrieved results
 
 To test retrieved results, uncomment the following lines.
 
