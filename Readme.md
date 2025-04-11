@@ -82,7 +82,7 @@ ls
 
 While you are able to get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/), you will have to monitor in the Terminal when you connect to the node and then submit your job. For greater productivity, it is recommended to submit your job using Slurm script. This way, you can request the compute node, submit your job and be alerted when it is complete. 
 
-In this step, edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/) and enter it at the command line.
+In this step, edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/).
 
 
 ```bash
@@ -101,7 +101,7 @@ In this step, edit the below Slurm script using your TACC account information [S
 
 ## 6. Enter script and submit job to compute node on HPC
 
-Beneath the Slurm script at the command line, enter the code from "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py line by line. 
+Line by line, enter the code from "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py. 
 
 Begin at the first line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L1 and finish with the last line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L123.
 
@@ -163,13 +163,7 @@ One way to better understand how a RAG works is to read the description of the f
 
 ## 1. Install packages
 
-First, import torch, a library for machine learning tasks. Then, import pretrained models from the HuggingFace transformers library: 
-
-* The pipeline function provides a simple API to perform NLP tasks using pretrained models. It abstracts away the complexity of loading models and tokenizers, making it easy to use them for inference.
-* AutoConfig is a class that helps automatically load the configuration for a pretrained model, including details about the model architecture, hyperparameters, and other settings necessary for initializing the model.
-* AutoTokenizer is a class in the transformers library that helps automatically load the appropriate tokenizer for a pretrained model, making it easier to switch between different models and their respective tokenizers.
-* AutoModelForCausalLM is a class that loads a pretrained model with a causal language modeling head. Causal language models are designed to predict the next token in a sequence. A token is an NLP unit that represents a piece of text.
-* GenerationConfig is a class that configures text generation parameters, such as setting the maximum length of the generated text or choosing the decoding strategy. A decoding strategy determines how the model selects the next word in a sequence based on the probabilities assigned to each possible word. 
+First, import torch, a library for machine learning tasks. Then, import pretrained models from the HuggingFace transformers library. 
 
 ```bash
 import torch
@@ -221,7 +215,7 @@ from accelerate import load_checkpoint_and_dispatch
 from accelerate import init_empty_weights
 ```
 
-Next, to prepare the model for efficient inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters:   
+Next, to prepare the model for inference (i.e., making predictions based on a trained model), load it, distribute it across devices and configure its parameters:   
  
 * Take a list of documents and format them by joining their content with double newline characters to create a blank line between text segments.
 
@@ -442,36 +436,5 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
         print("=====================================================")
  ```
 
-
-## 9. Set up command-line interface (CLI) to run the script 
-
-Next, include code to run the script from the command line, passing the model path and name as arguments:   
-
-* Check if the script is run directly: if __name__=="__main__": ensures that the code inside this block runs only if the script is executed directly, not when imported as a module.
-* Import argparse: import argparse imports the argparse module, which is used for parsing command-line arguments.
-* Create argument parser: parser = argparse.ArgumentParser(description='Put in model name and path') initializes an argument parser with a description.
-* Add arguments:
-        parser.add_argument('--path', metavar='path', help='the path to model') adds an argument --path for specifying the path to the model.
-        parser.add_argument('--MODEL_NAME', metavar='path', help='name of model') adds an argument --MODEL_NAME for specifying the name of the model.
-
-```bash
-if __name__=="__main__":
-    import argparse
-    parser = argparse.ArgumentParser(description='Put in model name and path')
-    parser.add_argument('--path', metavar='path', 
-                        help='the path to model')
-    parser.add_argument('--MODEL_NAME', metavar='path', 
-                        help='name of model')
-```
-  
-* Parse arguments: args = parser.parse_args() parses the command-line arguments provided by the user.
-* Call main function: main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME) calls the main function with the parsed arguments path and MODEL_NAME.
-
-```bash           
-
-    args = parser.parse_args()
-    main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME)
-
-```
 
 Congratulations! You have now recreated and ran a RAG on an HPC.
