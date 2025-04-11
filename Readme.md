@@ -12,12 +12,12 @@ https://tap.tacc.utexas.edu/mfalogin/
 
 This tutorial assumes a basic understanding of the Terminal. If needed, one introduction to using command line prompts in the Terminal is at the following link.
 
-https://www.freecodecamp.org/news/command-line-for-beginners/
+https://tacc-reproducible-intro-hpc.readthedocs.io/en/latest/intro_to_command_line/overview.html 
 
 
 ## 3. Retrive the original code and dataset 
 
-If you do not have a GitHub account, open one and clone the repository with the following command. 
+If you do not have a GitHub account, open one. Clone the repository with the following command. 
 
 ```bash
 git clone https://github.com/skye-glitch/RAG_tutorial.git
