@@ -125,28 +125,28 @@ source .venv/bin/activate
 You have now run the tutorial code.
 
 
-## 12. Instantiated database
+## 9. Instantiated database
 
 While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The code to instantiate the database is located at the following line of code in the .py.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
 
-## 13. Prevent multiple database instantiations
+## 10. Prevent multiple database instantiations
 
 To avoid loading the database more than once, comment out the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
 
-## 14. Enable database queries
+## 11. Enable database queries
 
 To query the database consequently, uncomment the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/317f544579e16de79e79ef36b3e97be03fd7bbde/rag_ce_example.py#L65
 
 
-## 15. Test retrieved results
+## 12. Test retrieved results
 
 To test retrieved results, uncomment the following lines.
 
