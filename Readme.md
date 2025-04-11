@@ -116,42 +116,10 @@ cd RAG_tutorial
 ```
 
 
-## 8. Load the apptainer module with Slurm script
+## 8. Run file
 
 ```bash
-module load tacc-apptainer
-```
-
-
-## 9. Pull container into your HPC $SCRATCH directory with Slurm script
-
-Run the following once.
-
-```bash
-current_dir=$(pwd)
-cd $SCRATCH
-apptainer pull docker://skyeglitch/taccgptback:latest
-cd "$current_dir"
-```
-
-
-## 10. Download model with Slurm script
-
-Run the following once.
-
-```bash
-apptainer exec $SCRATCH/taccgptback_latest.sif \
-    huggingface-cli download facebook/opt-1.3b --local-dir $SCRATCH/facebook/opt-1.3b/
-```
-
-
-## 11. Launch command in container with Slurm script
-
-```bash
-apptainer exec --nv $SCRATCH/taccgptback_latest.sif \
-python3 rag_ce_example.py \
---path="$SCRATCH/facebook/opt-1.3b/" \
---MODEL_NAME="$SCRATCH/facebook/opt-1.3b/" 
+source .venv/bin/activate
 ```
 
 You have now run the tutorial code.
