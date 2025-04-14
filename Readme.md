@@ -14,6 +14,7 @@ At the command line, request to access the HPC via ssh as follows.
 
 ```bash
 ssh <type your TACC email here>
+```
 
 When prompted, enter your password and MFA token. MFA details are at the following link.
 
