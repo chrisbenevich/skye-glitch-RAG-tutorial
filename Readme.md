@@ -27,6 +27,16 @@ For detailed instructions on cloning GitHub repositories, visit the following li
 
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository 
 
+## 3.a. Load modules
+
+To use Python, load the module for the Python package by entering the following command.
+
+```bash
+
+module load python/3.8.5
+module load cuda/11.2
+ ```
+
 
 ## 4. Set up virtual environment
 
@@ -50,7 +60,7 @@ ls
 * Activate the virtual environment.
 
 ```bash
-source bin/activate
+source RAG_VE/bin/activate
 ```
 
 * Install the PyTorch package in the virtual environment.
