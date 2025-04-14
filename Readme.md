@@ -10,7 +10,12 @@ https://tacc-reproducible-intro-hpc.readthedocs.io/en/latest/intro_to_command_li
 
 ## 2. SSH on to the HPC  
 
-At the command line, enter your TACC email, password and MFA token. MFA details are at the following link.
+At the command line, request to access the HPC via ssh as follows.
+
+```bash
+ssh <type your TACC email here>
+
+When prompted, enter your password and MFA token. MFA details are at the following link.
 
 https://tap.tacc.utexas.edu/mfalogin/
 
