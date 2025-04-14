@@ -1,18 +1,18 @@
 # How to Run RAG Tutorial Code on an HPC
 
 
-## 1. Log on to TAP  
-
-While several methods exist to run code on TACC's HPCs, logging on to TAP is a simple way to start the process using multifactor authentication at the following link.
-
-https://tap.tacc.utexas.edu/mfalogin/
-
-
-## 2. Understand basic Terminal use 
+## 1. Understand basic Terminal use 
 
 This tutorial assumes a basic understanding of the Terminal. If needed, one introduction to using command line prompts in the Terminal is at the following link.
 
 https://tacc-reproducible-intro-hpc.readthedocs.io/en/latest/intro_to_command_line/overview.html 
+
+
+## 2. SSH on to the HPC  
+
+At the command line, enter your TACC email, password and MFA token. MFA details are at the following link.
+
+https://tap.tacc.utexas.edu/mfalogin/
 
 
 ## 3. Retrive the original code and dataset 
@@ -27,18 +27,18 @@ For detailed instructions on cloning GitHub repositories, visit the following li
 
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository 
 
-## 3.a. Load modules
+## 4. Load modules
 
-To use Python, load the module for the Python package by entering the following command.
+Based on which HPC you are on, verify the version of Python available. You will need Python xxx and Cuda xxx at minimum. To use Python, load the module for the Python package by entering the following command.
 
 ```bash
 
 module load python/3.8.5
 module load cuda/11.2
- ```
+```
 
 
-## 4. Set up virtual environment
+## 5. Set up virtual environment
 
 To ensure the correct packages are available for your project, create a virtual environment. 
 
@@ -69,14 +69,6 @@ source RAG_VE/bin/activate
 pip install torch langchain accelerate
 ```
 
-* Modify the environment to operate in Python and import the packages needed for the tutorial.
-
-```bash
-python3
-import torch
-import langchain
-import accelerate
-```
 
 * If for any reason you need to end your session and return to the tutorial, you can load the virtual environment from the beginning of your session as follows.
 
@@ -88,11 +80,9 @@ ls
 * Once you return to the tutorial and reload your virtual environment, proceed to the next step in the tutorial.
 
 
-## 5. Enter Slurm script 
+## 6. Enter Slurm script 
 
-While you are able to get a compute node with [idev](https://docs.tacc.utexas.edu/software/idev/), you will have to monitor in the Terminal when you connect to the node and then submit your job. For greater productivity, it is recommended to submit your job using Slurm script. This way, you can request the compute node, submit your job and be alerted when it is complete. 
-
-In this step, edit the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/).
+In this step, request a compute node by editing the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/).
 
 
 ```bash
@@ -109,54 +99,39 @@ In this step, edit the below Slurm script using your TACC account information [S
 ```
 
 
-## 6. Enter script and submit job to compute node on HPC
+## 7. Enter script and submit job to compute node on HPC
 
-Line by line, enter the code from "rag_ce_example.py" at https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/main/rag_ce_example.py. 
-
-Begin at the first line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L1 and finish with the last line https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/a795b2d32594dd2faaa572d93036ebad14cdb205/rag_ce_example.py#L123.
-
-
-## 7. Change directory
-
-Change the directory to where the content resides in your directory on the HPCs. If you cloned the GitHub repo to your home directory to a folder called RAG_tutorial as I did, you will enter the HPC system at your home directory. To then move from your home directory to a folder called RAG_tutorial, enter the following at the command line.
-
+Modify the environment to operate in Python and request to run the code.
 
 ```bash
-cd RAG_tutorial
+python3 rag_ce_example.py 
 ```
 
-
-## 8. Run file
-
-```bash
-source .venv/bin/activate
-```
-
-You have now run the tutorial code.
+You have now submitted your job. Once a node becomes available and your code runs, you will be alerted. 
 
 
-## 9. Instantiated database
+## 8. Instantiated database
 
 While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The code to instantiate the database is located at the following line of code in the .py.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
 
-## 10. Prevent multiple database instantiations
+## 9. Prevent multiple database instantiations
 
 To avoid loading the database more than once, comment out the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
 
-## 11. Enable database queries
+## 10. Enable database queries
 
 To query the database consequently, uncomment the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/317f544579e16de79e79ef36b3e97be03fd7bbde/rag_ce_example.py#L65
 
 
-## 12. Test retrieved results
+## 11. Test retrieved results
 
 To test retrieved results, uncomment the following lines.
 
