@@ -56,7 +56,7 @@ source bin/activate
 * Install the PyTorch package in the virtual environment.
 
 ```bash
-pip install torch
+pip install torch langchain accelerate
 ```
 
 * Modify the environment to operate in Python and import the packages needed for the tutorial.
@@ -437,4 +437,4 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
  ```
 
 
-Congratulations! You have now recreated and ran a RAG on an HPC.
+Congratulations! You have now recreated and run a RAG on an HPC.
