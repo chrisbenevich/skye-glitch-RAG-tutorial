@@ -13,7 +13,7 @@ https://tacc-reproducible-intro-hpc.readthedocs.io/en/latest/intro_to_command_li
 At the command line, request to access the HPC via ssh as follows.
 
 ```bash
-ssh <type your TACC email here>
+ssh username@frontera.tacc.utexas.edu
 ```
 
 When prompted, enter your password and MFA token. MFA details are at the following link.
@@ -33,7 +33,37 @@ For detailed instructions on cloning GitHub repositories, visit the following li
 
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository 
 
-## 4. Load modules
+
+
+## 4a. Submit the installing script
+
+Use the Sbatch command.
+
+In this step, request a compute node by editing the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/).
+
+
+```bash
+#!/bin/bash
+#SBATCH -A your_allocation
+#SBATCH --time=00:05:00
+#SBATCH -o RAG-%J.o
+#SBATCH -e RAG-%J.e
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -p rtx
+#SBATCH --mail-user=your_email
+#SBATCH --mail-type=all
+
+python3 rag_ce_example.py 
+```
+
+
+
+```
+
+You have now submitted your job. Once a node becomes available and your code runs, you will be alerted. 
+
+## 4.b. Load modules
 
 [FACT CHECK: You will need Python 3.9 and Cuda 12.2 at minimum, so verify the version of Python available on the HPC you select.] On Frontera, to use Python, load the module for the available Python package by entering the following commands.
 
@@ -84,36 +114,6 @@ ls
 ```
 
 * Once you return to the tutorial and reload your virtual environment, proceed to the next step in the tutorial.
-
-
-## 6. Enter Slurm script 
-
-In this step, request a compute node by editing the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/).
-
-
-```bash
-#!/bin/bash
-#SBATCH -A your_allocation
-#SBATCH --time=00:05:00
-#SBATCH -o RAG-%J.o
-#SBATCH -e RAG-%J.e
-#SBATCH -N 1
-#SBATCH -n 1
-#SBATCH -p rtx
-#SBATCH --mail-user=your_email
-#SBATCH --mail-type=all
-```
-
-
-## 7. Enter script and submit job to compute node on HPC
-
-Modify the environment to operate in Python and request to run the code.
-
-```bash
-python3 rag_ce_example.py 
-```
-
-You have now submitted your job. Once a node becomes available and your code runs, you will be alerted. 
 
 
 ## 8. Instantiated database
