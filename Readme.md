@@ -35,7 +35,7 @@ https://docs.github.com/en/repositories/creating-and-managing-repositories/cloni
 
 ## 4. Load modules
 
-Based on which HPC you are on, verify the version of Python available. You will need Python 3.9 and Cuda 11.2 at minimum. To use Python, load the module for the Python package by entering the following command.
+[FACT CHECK: You will need Python 3.9 and Cuda 12.2 at minimum, so verify the version of Python available on the HPC you select.] On Frontera, to use Python, load the module for the available Python package by entering the following commands.
 
 ```bash
 
