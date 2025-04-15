@@ -39,8 +39,8 @@ Based on which HPC you are on, verify the version of Python available. You will 
 
 ```bash
 
-module load python3/3.9 # or newer
-module load cuda/11.2 # or newer
+#%Module load python3/3.9 # or newer
+#%Module load cuda/11.2 # or newer
 ```
 
 
