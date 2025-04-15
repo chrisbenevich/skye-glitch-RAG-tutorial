@@ -40,7 +40,7 @@ Based on which HPC you are on, verify the version of Python available. You will 
 ```bash
 
 module load python3/3.9 
-module load cuda/11.2 
+module load cuda/12.2 
 ```
 
 
