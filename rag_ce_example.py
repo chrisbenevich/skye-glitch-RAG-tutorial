@@ -49,7 +49,7 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     import nltk
     nltk.download('averaged_perceptron_tagger_eng')
     #4/28/25 edit punlt to punkt, run, see if still throws error
-    nltk.download('punlt_tab')
+    nltk.download('punkt_tab')
     docs = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=64)
     texts = text_splitter.split_documents(docs)
