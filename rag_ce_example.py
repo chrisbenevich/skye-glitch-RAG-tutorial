@@ -48,6 +48,7 @@ def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/")
     ssl._create_default_https_context = ssl._create_stdlib_context
     import nltk
     nltk.download('averaged_perceptron_tagger_eng')
+    #4/28/25 edit punlt to punkt, run, see if still throws error
     nltk.download('punlt_tab')
     docs = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=64)
