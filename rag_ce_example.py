@@ -26,7 +26,9 @@ from accelerate import init_empty_weights
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
-def main(in_path="../facebook/opt-1.3b/", in_MODEL_NAME="../facebook/opt-1.3b/"):
+
+# 5/7/25 change initial ../facebook/opt-1.3b/ path to absolute
+def main(in_path="$SCRATCH/RAG_tutorial/facebook/opt-1.3b/", in_MODEL_NAME="$SCRATCH/RAG_tutorial/facebook/opt-1.3b/"):
     path = in_path
     tokenizer = AutoTokenizer.from_pretrained(path)   
     model_config = AutoConfig.from_pretrained(path)
