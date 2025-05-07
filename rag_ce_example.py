@@ -44,7 +44,8 @@ def main(in_path="$SCRATCH/RAG_tutorial/facebook/opt-1.3b/", in_MODEL_NAME="$SCR
     model.resize_token_embeddings(len(tokenizer))
 
     # RAG
-    loader = DirectoryLoader('./ce311k/notebooks/lectures/', glob="**/*_solutions.md", show_progress=True, loader_cls=UnstructuredMarkdownLoader, load_hidden=False)
+    # 5/7/25 change initial ./ce311k location to absolute path
+    loader = DirectoryLoader('$SCRATCH/RAG_tutorial/ce311k/notebooks/lectures/', glob="**/*_solutions.md", show_progress=True, loader_cls=UnstructuredMarkdownLoader, load_hidden=False)
     # fix for ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)
     import ssl
     ssl._create_default_https_context = ssl._create_stdlib_context
