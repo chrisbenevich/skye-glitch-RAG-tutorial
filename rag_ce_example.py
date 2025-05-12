@@ -28,7 +28,7 @@ def format_docs(docs):
 
 
 # 5/7/25 change initial ../facebook/opt-1.3b/ path to absolute
-def main(in_path="/scratch1/10513/RAG_tutorial/facebook/opt-1.3b/", in_MODEL_NAME="/scratch1/10513/RAG_tutorial/facebook/opt-1.3b/"):
+def main(in_path="/scratch1/10513/chrisbenevich/RAG_tutorial/facebook/opt-1.3b/", in_MODEL_NAME="/scratch1/10513/chrisbenevich/RAG_tutorial/facebook/opt-1.3b/"):
     path = in_path
     tokenizer = AutoTokenizer.from_pretrained(path)   
     model_config = AutoConfig.from_pretrained(path)
@@ -45,7 +45,7 @@ def main(in_path="/scratch1/10513/RAG_tutorial/facebook/opt-1.3b/", in_MODEL_NAM
 
     # RAG
     # 5/7/25 change initial ./ce311k location to absolute path
-    loader = DirectoryLoader('/scratch1/10513/RAG_tutorial/ce311k/notebooks/lectures/', glob="**/*_solutions.md", show_progress=True, loader_cls=UnstructuredMarkdownLoader, load_hidden=False)
+    loader = DirectoryLoader('/scratch1/10513/chrisbenevich/RAG_tutorial/ce311k/notebooks/lectures/', glob="**/*_solutions.md", show_progress=True, loader_cls=UnstructuredMarkdownLoader, load_hidden=False)
     # fix for ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)
     import ssl
     ssl._create_default_https_context = ssl._create_stdlib_context
