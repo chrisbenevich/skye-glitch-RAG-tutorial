@@ -115,13 +115,14 @@ def main(in_path="/scratch1/10513/RAG_tutorial/facebook/opt-1.3b/", in_MODEL_NAM
         print(tokenizer.decode(outputs.cpu().squeeze()).split(question)[-1])
         print("=====================================================")
             
-
+# comment out lines of parser then add the "main" function call as a test
 if __name__=="__main__":
-    import argparse
-    parser = argparse.ArgumentParser(description='Put in model name and path')
-    parser.add_argument('--path', metavar='path', 
-                        help='the path to model')
-    parser.add_argument('--MODEL_NAME', metavar='path', 
-                        help='name of model')
-    args = parser.parse_args()
-    main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME)
+#    import argparse
+#    parser = argparse.ArgumentParser(description='Put in model name and path')
+#    parser.add_argument('--path', metavar='path', 
+#                        help='the path to model')
+#    parser.add_argument('--MODEL_NAME', metavar='path', 
+#                        help='name of model')
+#    args = parser.parse_args()
+#    main(in_path=args.path, in_MODEL_NAME=args.MODEL_NAME)
+main()
