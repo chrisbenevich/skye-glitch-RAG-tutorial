@@ -35,7 +35,7 @@ https://docs.github.com/en/repositories/creating-and-managing-repositories/cloni
 
 
 
-## 4a. Submit the installing script
+## 4. Submit the installing script
 
 Use the Sbatch command.
 
@@ -58,12 +58,9 @@ python3 rag_ce_example.py
 ```
 
 
-
-```
-
 You have now submitted your job. Once a node becomes available and your code runs, you will be alerted. 
 
-## 4.b. Load modules
+## 5. Load modules
 
 [FACT CHECK: You will need Python 3.9 and Cuda 12.2 at minimum, so verify the version of Python available on the HPC you select.] On Frontera, to use Python, load the module for the available Python package by entering the following commands.
 
@@ -73,71 +70,62 @@ module load python3/3.9
 module load cuda/12.2 
 ```
 
+## 6. [ update inference tutorial steps below ]
 
-## 5. Set up virtual environment
+module load tacc-apptainer
 
-To ensure the correct packages are available for your project, create a virtual environment. 
-
-* For business continuity and organizational purposes, consider where you would like to save the virtual environment. In this example, a new directory, called RAG_tutorial, and a virtual environment, called RAG_VE, are created at the command prompt as follows.
-
-```bash
-mkdir RAG_tutorial
-python3 -m venv RAG_VE
-```
-
-* Verify that your directory installed, change directories and verify that your virtual environment installed.
-
-```bash
-ls
-cd RAG_VE/
-ls
-```
-
-* Activate the virtual environment.
-
-```bash
-source RAG_VE/bin/activate
-```
-
-* Install the PyTorch package in the virtual environment.
-
-```bash
-pip install torch langchain accelerate
-```
+## 7. [ update ]
+# pull container
+# you only need to run this ONCE
+current_dir=$(pwd)
+cd $SCRATCH
+apptainer pull docker://skyeglitch/taccgptback:latest
+cd "$current_dir"
 
 
-* If for any reason you need to end your session and return to the tutorial, you can load the virtual environment from the beginning of your session as follows.
-
-```bash
-cd RAG_VE/
-ls
-```
-
-* Once you return to the tutorial and reload your virtual environment, proceed to the next step in the tutorial.
+## 8. [ update ]
+# download model
+# you only need to run this ONCE
+apptainer exec $SCRATCH/taccgptback_latest.sif \
+    huggingface-cli download facebook/opt-1.3b --local-dir $SCRATCH/facebook/opt-1.3b/
 
 
-## 8. Instantiated database
+## 9. [ update ]
+# launch command in container
+apptainer exec --nv $SCRATCH/taccgptback_latest.sif \
+python3 rag_ce_example.py \
+--path="$SCRATCH/facebook/opt-1.3b/" \
+--MODEL_NAME="$SCRATCH/facebook/opt-1.3b/" 
+
+
+
+## 10. [placeholder ]
+
+[ placeholder , consider reordering below ]
+
+
+## 11. Instantiated database
 
 While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The code to instantiate the database is located at the following line of code in the .py.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
 
-## 9. Prevent multiple database instantiations
+## 12. Prevent multiple database instantiations
 
 To avoid loading the database more than once, comment out the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
 
-## 10. Enable database queries
+## 13. Enable database queries
 
 To query the database consequently, uncomment the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/317f544579e16de79e79ef36b3e97be03fd7bbde/rag_ce_example.py#L65
 
 
-## 11. Test retrieved results
+## 14. Test retrieved results
 
 To test retrieved results, uncomment the following lines.
 
