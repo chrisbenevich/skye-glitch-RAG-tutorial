@@ -60,7 +60,7 @@ python3 rag_ce_example.py
 
 You have now submitted your job. Once a node becomes available and your code runs, you will be alerted. 
 
-## 5. Load modules
+## [ consider moving this section into debugging section: Load modules
 
 [FACT CHECK: You will need Python 3.9 and Cuda 12.2 at minimum, so verify the version of Python available on the HPC you select.] On Frontera, to use Python, load the module for the available Python package by entering the following commands.
 
@@ -92,10 +92,14 @@ apptainer exec $SCRATCH/taccgptback_latest.sif \
 
 ## 9. [ update ]
 # launch command in container
-apptainer exec --nv $SCRATCH/taccgptback_latest.sif \
-python3 rag_ce_example.py \
---path="$SCRATCH/facebook/opt-1.3b/" \
---MODEL_NAME="$SCRATCH/facebook/opt-1.3b/" 
+
+5/13/25
+
+idev -N 1 -n 1 -p rtx-dev -t 02:00:00
+module load tacc-apptainer
+cd $SCRATCH
+apptainer run —-nv taccgptback_latest.sif
+python3 RAG_tutorial/rag_ce_example.py 
 
 
 
