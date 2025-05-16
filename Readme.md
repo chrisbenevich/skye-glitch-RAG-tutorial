@@ -60,52 +60,52 @@ python3 rag_ce_example.py
 
 You have now submitted your job. Once a node becomes available and your code runs, you will be alerted. 
 
-## [ consider moving this section into debugging section: Load modules
 
-[FACT CHECK: You will need Python 3.9 and Cuda 12.2 at minimum, so verify the version of Python available on the HPC you select.] On Frontera, to use Python, load the module for the available Python package by entering the following commands.
+
+## 6. Load the container
 
 ```bash
-
-module load python3/3.9 
-module load cuda/12.2 
+module load tacc-apptainer
 ```
 
-## 6. [ update inference tutorial steps below ]
 
-module load tacc-apptainer
 
-## 7. [ update ]
-# pull container
-# you only need to run this ONCE
+## 7. Pull the container
+
+Run this command one time only.
+
+```bash
 current_dir=$(pwd)
 cd $SCRATCH
 apptainer pull docker://skyeglitch/taccgptback:latest
 cd "$current_dir"
+```
 
 
-## 8. [ update ]
-# download model
-# you only need to run this ONCE
+
+## 8. Download the model
+
+Run this command one time only.
+
+```bash
 apptainer exec $SCRATCH/taccgptback_latest.sif \
     huggingface-cli download facebook/opt-1.3b --local-dir $SCRATCH/facebook/opt-1.3b/
+```
 
 
-## 9. [ update ]
-# launch command in container
 
-5/13/25
+## 9. Run the RAG in the container 
 
-idev -N 1 -n 1 -p rtx-dev -t 02:00:00
-module load tacc-apptainer
-cd $SCRATCH
+```bash
 apptainer run —-nv taccgptback_latest.sif
 python3 RAG_tutorial/rag_ce_example.py 
+```
 
 
 
 ## 10. [placeholder ]
 
-[ placeholder , consider reordering below ]
+[ placeholder  ]
 
 
 ## 11. Instantiated database
@@ -137,6 +137,18 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/9c2344a7eae9917c2c66400574ae3a777630a56d/rag_ce_example.py#L68
 
+
+## 15. Debugging
+
+## Load modules
+
+If you encounter errors about versions of Python and/or Cuda, verify the version of Python and Cuda available on the HPC you select. On Frontera, to use Python, load the module for the available Python package by entering the following commands.
+
+```bash
+
+module load python3/3.9 
+module load cuda/12.2 
+```
 
 # Understanding RAG Tutorial Components and Dependencies
 
