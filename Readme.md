@@ -34,13 +34,11 @@ For detailed instructions on cloning GitHub repositories, visit the following li
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository 
 
 
-
 ## 4. Submit the installing script
 
 Use the Sbatch command.
 
 In this step, request a compute node by editing the below Slurm script using your TACC account information [SBATCH](https://tacc.github.io/TeachingWithTACC/02.running_jobs/).
-
 
 ```bash
 #!/bin/bash
@@ -57,9 +55,7 @@ In this step, request a compute node by editing the below Slurm script using you
 python3 rag_ce_example.py 
 ```
 
-
 You have now submitted your job. Once a node becomes available and your code runs, you will be alerted. 
-
 
 
 ## 6. Load the container
@@ -67,7 +63,6 @@ You have now submitted your job. Once a node becomes available and your code run
 ```bash
 module load tacc-apptainer
 ```
-
 
 
 ## 7. Pull the container
@@ -82,7 +77,6 @@ cd "$current_dir"
 ```
 
 
-
 ## 8. Download the model
 
 Run this command one time only.
@@ -93,7 +87,6 @@ apptainer exec $SCRATCH/taccgptback_latest.sif \
 ```
 
 
-
 ## 9. Run the RAG in the container 
 
 ```bash
@@ -102,34 +95,28 @@ python3 RAG_tutorial/rag_ce_example.py
 ```
 
 
-
-## 10. [placeholder ]
-
-[ placeholder  ]
-
-
-## 11. Instantiated database
+## 10. Instantiated database
 
 While not a separate step, note that after running "rag_ce_example.py." once, you have now loaded, or "instantiated," the database. The code to instantiate the database is located at the following line of code in the .py.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63  
 
 
-## 12. Prevent multiple database instantiations
+## 11. Prevent multiple database instantiations
 
 To avoid loading the database more than once, comment out the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/789c1fcc8594d77c4984e7f5be9a7a22134bedc6/rag_ce_example.py#L63
 
 
-## 13. Enable database queries
+## 12. Enable database queries
 
 To query the database consequently, uncomment the following.
 
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/317f544579e16de79e79ef36b3e97be03fd7bbde/rag_ce_example.py#L65
 
 
-## 14. Test retrieved results
+## 13. Test retrieved results
 
 To test retrieved results, uncomment the following lines.
 
@@ -138,17 +125,6 @@ https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutoria
 https://github.com/chrisbenevich-nsalccftaccut-ai-intern/skye-glitch-RAG-tutorial/blob/9c2344a7eae9917c2c66400574ae3a777630a56d/rag_ce_example.py#L68
 
 
-## 15. Debugging
-
-## Load modules
-
-If you encounter errors about versions of Python and/or Cuda, verify the version of Python and Cuda available on the HPC you select. On Frontera, to use Python, load the module for the available Python package by entering the following commands.
-
-```bash
-
-module load python3/3.9 
-module load cuda/12.2 
-```
 
 # Understanding RAG Tutorial Components and Dependencies
 
