@@ -123,7 +123,7 @@ Once you have seen how the job runs on an HPC, explore the components and depend
 
 One way to better understand how a RAG works is to read the description of the function of the code of the first component, read its corresponding code, do the same for the second component and analyze how the two components relate or depend on each other. Following is the documentation of ten steps to set up a RAG.
 
-## 1. Install packages
+## 1. Import packages
 
 First, import torch, a library for machine learning tasks. Then, import pretrained models from the HuggingFace transformers library. 
 
