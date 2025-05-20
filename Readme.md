@@ -45,7 +45,7 @@ For detailed instructions on interactive access to compute nodes, visit the foll
 https://docs.tacc.utexas.edu/software/idev/
 
 
-## 5. Load the container
+## 5. Load the apptainer module
 
 ```bash
 module load tacc-apptainer
