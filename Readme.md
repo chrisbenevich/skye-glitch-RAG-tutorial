@@ -399,4 +399,4 @@ Retrieve relevant documents, format them, provide context to augment the prompt 
  ```
 
 
-Congratulations! You have now recreated and run a RAG on an HPC.
+Congratulations! You have now recreated a RAG, run it on an HPC and learned about its components.
